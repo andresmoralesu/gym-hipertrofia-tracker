@@ -1,0 +1,38 @@
+/**
+ * 🎯 VARIACIONES STYLES
+ * LAYER 2: Estilos específicos para la vista de variaciones
+ */
+
+/* TODO: Estilos para:
+   - Comparativa semanal
+   - Cambios de ejercicios
+   - Navegación entre semanas
+   - Card de cambios visuales
+*/
+
+#variacion-actual {
+  border-top: 4px solid var(--primary);
+}
+
+#variacion-cambios {
+  background: var(--gray-light);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin-top: 1rem;
+}
+
+#variacion-cambios h4 {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.cambio-nuevo {
+  color: var(--success);
+  font-weight: 600;
+}
+
+.cambio-eliminado {
+  color: var(--danger);
+  font-weight: 600;
+  text-decoration: line-through;
+}

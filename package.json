@@ -1,0 +1,21 @@
+{
+  "name": "gym-hipertrofia-tracker",
+  "version": "1.0.0",
+  "description": "App personal para administrar rutinas de entrenamiento con variaciones semanales. IndexedDB local + Google Drive sync.",
+  "author": "Andrés Morales",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "test": "echo 'Tests coming soon'",
+    "build": "echo 'Build coming soon'"
+  },
+  "keywords": [
+    "gym",
+    "fitness",
+    "hipertrofia",
+    "tracker",
+    "indexeddb",
+    "google-drive"
+  ]
+}

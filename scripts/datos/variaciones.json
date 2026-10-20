@@ -1,0 +1,1088 @@
+{
+  "martes": {
+    "variacion1": {
+      "diaId": "martes",
+      "numeroVariacion": 1,
+      "nombre": "Pierna - Variación 1",
+      "descripcion": "Enfoque en cuádriceps con sentadilla y prensa",
+      "ejercicios": [
+        {
+          "id": "martes_var1_1",
+          "nombre": "Sentadilla en Smith",
+          "series": 3,
+          "reps": "12",
+          "descanso": 90,
+          "equipo": "Smith Machine"
+        },
+        {
+          "id": "martes_var1_2",
+          "nombre": "Prensa de Pierna",
+          "series": 3,
+          "reps": "12",
+          "descanso": 90,
+          "equipo": "Máquina prensa"
+        },
+        {
+          "id": "martes_var1_3",
+          "nombre": "Extensión de Pierna",
+          "series": 3,
+          "reps": "12",
+          "descanso": 60,
+          "equipo": "Máquina extensión"
+        },
+        {
+          "id": "martes_var1_4",
+          "nombre": "Curl Femoral",
+          "series": 3,
+          "reps": "12",
+          "descanso": 60,
+          "equipo": "Máquina curl"
+        },
+        {
+          "id": "martes_var1_5",
+          "nombre": "Leg Press Horizontal",
+          "series": 3,
+          "reps": "12",
+          "descanso": 60,
+          "equipo": "Máquina horizontal"
+        },
+        {
+          "id": "martes_var1_6",
+          "nombre": "Abducción de Cadera",
+          "series": 3,
+          "reps": "12",
+          "descanso": 45,
+          "equipo": "Máquina abducción"
+        },
+        {
+          "id": "martes_var1_7",
+          "nombre": "Pantorrillas en Smith",
+          "series": 3,
+          "reps": "12",
+          "descanso": 45,
+          "equipo": "Smith Machine"
+        },
+        {
+          "id": "martes_var1_8",
+          "nombre": "Sentadillas Búlgaras",
+          "series": 3,
+          "reps": "12",
+          "descanso": 60,
+          "equipo": "Banco + Mancuerna"
+        }
+      ]
+    },
+    "variacion2": {
+      "diaId": "martes",
+      "numeroVariacion": 2,
+      "nombre": "Pierna - Variación 2",
+      "descripcion": "Enfoque en isquiotibiales con peso libre",
+      "ejercicios": [
+        {
+          "id": "martes_var2_1",
+          "nombre": "Sentadilla Frontal con Barra",
+          "series": 3,
+          "reps": "12",
+          "descanso": 90,
+          "equipo": "Barra olímpica"
+        },
+        {
+          "id": "martes_var2_2",
+          "nombre": "Peso Muerto Rumano",
+          "series": 3,
+          "reps": "12",
+          "descanso": 90,
+          "equipo": "Barra olímpica"
+        },
+        {
+          "id": "martes_var2_3",
+          "nombre": "Curl Femoral Acostado",
+          "series": 3,
+          "reps": "12",
+          "descanso": 60,
+          "equipo": "Máquina curl"
+        },
+        {
+          "id": "martes_var2_4",
+          "nombre": "Legpress 45°",
+          "series": 3,
+          "reps": "12",
+          "descanso": 90,
+          "equipo": "Máquina 45°"
+        },
+        {
+          "id": "martes_var2_5",
+          "nombre": "Extensión de Pierna",
+          "series": 3,
+          "reps": "12",
+          "descanso": 60,
+          "equipo": "Máquina extensión"
+        },
+        {
+          "id": "martes_var2_6",
+          "nombre": "Aductores",
+          "series": 3,
+          "reps": "12",
+          "descanso": 45,
+          "equipo": "Máquina aductores"
+        },
+        {
+          "id": "martes_var2_7",
+          "nombre": "Pantorrillas de Pie",
+          "series": 3,
+          "reps": "12",
+          "descanso": 45,
+          "equipo": "Máquina pantorrillas"
+        },
+        {
+          "id": "martes_var2_8",
+          "nombre": "Zancadas con Mancuernas",
+          "series": 3,
+          "reps": "12",
+          "descanso": 60,
+          "equipo": "Mancuernas"
+        }
+      ]
+    },
+    "variacion3": {
+      "diaId": "martes",
+      "numeroVariacion": 3,
+      "nombre": "Pierna - Variación 3",
+      "descripcion": "Enfoque en volumen general con superseries",
+      "ejercicios": [
+        {
+          "id": "martes_var3_1",
+          "nombre": "Sentadilla Hack",
+          "series": 3,
+          "reps": "12",
+          "descanso": 90,
+          "equipo": "Máquina Hack"
+        },
+        {
+          "id": "martes_var3_2",
+          "nombre": "Prensa V",
+          "series": 3,
+          "reps": "12",
+          "descanso": 90,
+          "equipo": "Máquina V-press"
+        },
+        {
+          "id": "martes_var3_3",
+          "nombre": "Leg Curl Sentado",
+          "series": 3,
+          "reps": "12",
+          "descanso": 60,
+          "equipo": "Máquina sentado"
+        },
+        {
+          "id": "martes_var3_4",
+          "nombre": "Prensa de Pierna (Pies Altos)",
+          "series": 3,
+          "reps": "12",
+          "descanso": 60,
+          "equipo": "Máquina prensa"
+        },
+        {
+          "id": "martes_var3_5",
+          "nombre": "Extensión Pierna Una Pierna",
+          "series": 3,
+          "reps": "12",
+          "descanso": 45,
+          "equipo": "Máquina extensión"
+        },
+        {
+          "id": "martes_var3_6",
+          "nombre": "Abducción Cadera Sentado",
+          "series": 3,
+          "reps": "12",
+          "descanso": 45,
+          "equipo": "Máquina abducción"
+        },
+        {
+          "id": "martes_var3_7",
+          "nombre": "Pantorrillas Máquina 45°",
+          "series": 3,
+          "reps": "12",
+          "descanso": 45,
+          "equipo": "Máquina 45°"
+        },
+        {
+          "id": "martes_var3_8",
+          "nombre": "Sissy Squats",
+          "series": 3,
+          "reps": "12",
+          "descanso": 60,
+          "equipo": "Barra + peso corporal"
+        }
+      ]
+    },
+    "variacion4": {
+      "diaId": "martes",
+      "numeroVariacion": 4,
+      "nombre": "Pierna - Variación 4",
+      "descripcion": "Enfoque en fuerza con ejercicios compuestos",
+      "ejercicios": [
+        {
+          "id": "martes_var4_1",
+          "nombre": "Sentadilla Barra Libre",
+          "series": 3,
+          "reps": "5-8",
+          "descanso": 120,
+          "equipo": "Barra olímpica + Jaula"
+        },
+        {
+          "id": "martes_var4_2",
+          "nombre": "Peso Muerto Convencional",
+          "series": 3,
+          "reps": "5-8",
+          "descanso": 120,
+          "equipo": "Barra olímpica"
+        },
+        {
+          "id": "martes_var4_3",
+          "nombre": "Sentadilla de Caja",
+          "series": 3,
+          "reps": "8-10",
+          "descanso": 90,
+          "equipo": "Caja + Barra"
+        },
+        {
+          "id": "martes_var4_4",
+          "nombre": "Leg Press Pesado",
+          "series": 3,
+          "reps": "8-10",
+          "descanso": 90,
+          "equipo": "Máquina prensa"
+        },
+        {
+          "id": "martes_var4_5",
+          "nombre": "Curl Femoral",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 60,
+          "equipo": "Máquina curl"
+        },
+        {
+          "id": "martes_var4_6",
+          "nombre": "Split Squats con Barra",
+          "series": 3,
+          "reps": "8-10",
+          "descanso": 60,
+          "equipo": "Barra olímpica"
+        },
+        {
+          "id": "martes_var4_7",
+          "nombre": "Pantorrillas Pesadas",
+          "series": 3,
+          "reps": "8-10",
+          "descanso": 60,
+          "equipo": "Máquina pantorrillas"
+        },
+        {
+          "id": "martes_var4_8",
+          "nombre": "Abdominales",
+          "series": 3,
+          "reps": "15-20",
+          "descanso": 45,
+          "equipo": "Máquina abdominales"
+        }
+      ]
+    },
+    "variacion5": {
+      "diaId": "martes",
+      "numeroVariacion": 5,
+      "nombre": "Pierna - Variación 5",
+      "descripcion": "Enfoque en congestión muscular",
+      "ejercicios": [
+        {
+          "id": "martes_var5_1",
+          "nombre": "Sentadilla Pendular",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 75,
+          "equipo": "Máquina pendular"
+        },
+        {
+          "id": "martes_var5_2",
+          "nombre": "Prensa Inclinada",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 75,
+          "equipo": "Máquina prensa inclinada"
+        },
+        {
+          "id": "martes_var5_3",
+          "nombre": "Leg Curl Tumbado",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 60,
+          "equipo": "Máquina curl"
+        },
+        {
+          "id": "martes_var5_4",
+          "nombre": "Extensión Pierna Completa",
+          "series": 3,
+          "reps": "15-20",
+          "descanso": 45,
+          "equipo": "Máquina extensión"
+        },
+        {
+          "id": "martes_var5_5",
+          "nombre": "Aductores Máquina",
+          "series": 3,
+          "reps": "15-20",
+          "descanso": 45,
+          "equipo": "Máquina aductores"
+        },
+        {
+          "id": "martes_var5_6",
+          "nombre": "Abductores Máquina",
+          "series": 3,
+          "reps": "15-20",
+          "descanso": 45,
+          "equipo": "Máquina abductores"
+        },
+        {
+          "id": "martes_var5_7",
+          "nombre": "Pantorrillas Congestión",
+          "series": 3,
+          "reps": "20-25",
+          "descanso": 30,
+          "equipo": "Máquina pantorrillas"
+        },
+        {
+          "id": "martes_var5_8",
+          "nombre": "Step-ups Aderidos",
+          "series": 3,
+          "reps": "15-20",
+          "descanso": 45,
+          "equipo": "Step + Mancuerna"
+        }
+      ]
+    }
+  },
+  "miercoles": {
+    "variacion1": {
+      "diaId": "miercoles",
+      "numeroVariacion": 1,
+      "nombre": "Pecho/Tríceps/Hombro - Variación 1",
+      "descripcion": "Enfoque pecho con banca plana y dumbbell press",
+      "ejercicios": [
+        {
+          "id": "miercoles_var1_1",
+          "nombre": "Press Banca Plana",
+          "series": 3,
+          "reps": "8-10",
+          "descanso": 90,
+          "equipo": "Barra + Banca"
+        },
+        {
+          "id": "miercoles_var1_2",
+          "nombre": "Dumbbell Press Plano",
+          "series": 3,
+          "reps": "8-10",
+          "descanso": 90,
+          "equipo": "Mancuernas"
+        },
+        {
+          "id": "miercoles_var1_3",
+          "nombre": "Press Hombros Sentado",
+          "series": 3,
+          "reps": "8-10",
+          "descanso": 90,
+          "equipo": "Barra + Banco"
+        },
+        {
+          "id": "miercoles_var1_4",
+          "nombre": "Press Francés",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 60,
+          "equipo": "Barra EZ + Banco"
+        },
+        {
+          "id": "miercoles_var1_5",
+          "nombre": "Fondos en Banco",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 60,
+          "equipo": "Banco"
+        },
+        {
+          "id": "miercoles_var1_6",
+          "nombre": "Elevaciones Laterales",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 45,
+          "equipo": "Mancuernas"
+        },
+        {
+          "id": "miercoles_var1_7",
+          "nombre": "Pájaros con Mancuernas",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 45,
+          "equipo": "Mancuernas + Banco"
+        },
+        {
+          "id": "miercoles_var1_8",
+          "nombre": "Extensiones Tríceps Cuerda",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 45,
+          "equipo": "Cuerda + Polea"
+        }
+      ]
+    },
+    "variacion2": {
+      "diaId": "miercoles",
+      "numeroVariacion": 2,
+      "nombre": "Pecho/Tríceps/Hombro - Variación 2",
+      "descripcion": "Enfoque máquinas e inclinaciones",
+      "ejercicios": [
+        {
+          "id": "miercoles_var2_1",
+          "nombre": "Press Banca Inclinada",
+          "series": 3,
+          "reps": "8-10",
+          "descanso": 90,
+          "equipo": "Barra + Banca inclinada"
+        },
+        {
+          "id": "miercoles_var2_2",
+          "nombre": "Máquina Pecho",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 90,
+          "equipo": "Máquina pecho"
+        },
+        {
+          "id": "miercoles_var2_3",
+          "nombre": "Levantamiento Frontal",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 60,
+          "equipo": "Mancuernas"
+        },
+        {
+          "id": "miercoles_var2_4",
+          "nombre": "Press Máquina Hombro",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 90,
+          "equipo": "Máquina hombro"
+        },
+        {
+          "id": "miercoles_var2_5",
+          "nombre": "Fondos Triceps Máquina",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 60,
+          "equipo": "Máquina fondos"
+        },
+        {
+          "id": "miercoles_var2_6",
+          "nombre": "Flexión de Codos Polea",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 45,
+          "equipo": "Polea + Barra"
+        },
+        {
+          "id": "miercoles_var2_7",
+          "nombre": "Elevaciones Posteriores",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 45,
+          "equipo": "Mancuernas"
+        },
+        {
+          "id": "miercoles_var2_8",
+          "nombre": "Arco Pecho Máquina",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 45,
+          "equipo": "Máquina arco"
+        }
+      ]
+    },
+    "variacion3": {
+      "diaId": "miercoles",
+      "numeroVariacion": 3,
+      "nombre": "Pecho/Tríceps/Hombro - Variación 3",
+      "descripcion": "Enfoque en congestión muscular",
+      "ejercicios": [
+        {
+          "id": "miercoles_var3_1",
+          "nombre": "Aperturas Pecho Máquina",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 60,
+          "equipo": "Máquina aperturas"
+        },
+        {
+          "id": "miercoles_var3_2",
+          "nombre": "Dumbbell Press Declinado",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 60,
+          "equipo": "Mancuernas + Banco declinado"
+        },
+        {
+          "id": "miercoles_var3_3",
+          "nombre": "Pec Deck",
+          "series": 3,
+          "reps": "15-20",
+          "descanso": 45,
+          "equipo": "Máquina Pec Deck"
+        },
+        {
+          "id": "miercoles_var3_4",
+          "nombre": "Elevaciones Laterales Mancuerna",
+          "series": 3,
+          "reps": "15-20",
+          "descanso": 45,
+          "equipo": "Mancuernas"
+        },
+        {
+          "id": "miercoles_var3_5",
+          "nombre": "Press Hombro Máquina",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 60,
+          "equipo": "Máquina hombro"
+        },
+        {
+          "id": "miercoles_var3_6",
+          "nombre": "Extensiones Tríceps Polea",
+          "series": 3,
+          "reps": "15-20",
+          "descanso": 45,
+          "equipo": "Polea + Cuerda"
+        },
+        {
+          "id": "miercoles_var3_7",
+          "nombre": "Kickback Tríceps",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 45,
+          "equipo": "Mancuerna + Banco"
+        },
+        {
+          "id": "miercoles_var3_8",
+          "nombre": "Pájaro de Pie con Polea",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 45,
+          "equipo": "Polea cruzada"
+        }
+      ]
+    },
+    "variacion4": {
+      "diaId": "miercoles",
+      "numeroVariacion": 4,
+      "nombre": "Pecho/Tríceps/Hombro - Variación 4",
+      "descripcion": "Enfoque fuerza e hipertrofia",
+      "ejercicios": [
+        {
+          "id": "miercoles_var4_1",
+          "nombre": "Press Banca Declinada",
+          "series": 3,
+          "reps": "8-10",
+          "descanso": 90,
+          "equipo": "Barra + Banca declinada"
+        },
+        {
+          "id": "miercoles_var4_2",
+          "nombre": "Dumbbell Flyes Plano",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 60,
+          "equipo": "Mancuernas + Banco"
+        },
+        {
+          "id": "miercoles_var4_3",
+          "nombre": "Military Press",
+          "series": 3,
+          "reps": "8-10",
+          "descanso": 90,
+          "equipo": "Barra"
+        },
+        {
+          "id": "miercoles_var4_4",
+          "nombre": "Remo Mancuerna de Pie",
+          "series": 3,
+          "reps": "8-10",
+          "descanso": 60,
+          "equipo": "Mancuerna"
+        },
+        {
+          "id": "miercoles_var4_5",
+          "nombre": "Flexión de Codos Mancuerna",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 60,
+          "equipo": "Mancuernas"
+        },
+        {
+          "id": "miercoles_var4_6",
+          "nombre": "Extensión Tríceps Polea",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 60,
+          "equipo": "Polea"
+        },
+        {
+          "id": "miercoles_var4_7",
+          "nombre": "Encogimiento de Hombros",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 60,
+          "equipo": "Mancuernas"
+        },
+        {
+          "id": "miercoles_var4_8",
+          "nombre": "Cara Tirones",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 45,
+          "equipo": "Polea + Cuerda"
+        }
+      ]
+    },
+    "variacion5": {
+      "diaId": "miercoles",
+      "numeroVariacion": 5,
+      "nombre": "Pecho/Tríceps/Hombro - Variación 5",
+      "descripcion": "Enfoque en cables y volumen",
+      "ejercicios": [
+        {
+          "id": "miercoles_var5_1",
+          "nombre": "Cruces de Cables Pecho",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 60,
+          "equipo": "Cables cruzados"
+        },
+        {
+          "id": "miercoles_var5_2",
+          "nombre": "Aperturas Pecho Cables Bajo",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 60,
+          "equipo": "Cables bajos"
+        },
+        {
+          "id": "miercoles_var5_3",
+          "nombre": "Press Hombro Mancuernas",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 60,
+          "equipo": "Mancuernas + Banco"
+        },
+        {
+          "id": "miercoles_var5_4",
+          "nombre": "Elevaciones Frontales Cables",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 45,
+          "equipo": "Cables"
+        },
+        {
+          "id": "miercoles_var5_5",
+          "nombre": "Presión Tríceps Máquina",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 60,
+          "equipo": "Máquina fondos"
+        },
+        {
+          "id": "miercoles_var5_6",
+          "nombre": "Extensión Tríceps Mancuerna",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 45,
+          "equipo": "Mancuerna"
+        },
+        {
+          "id": "miercoles_var5_7",
+          "nombre": "Pájaro Cables Posterior",
+          "series": 3,
+          "reps": "15-20",
+          "descanso": 45,
+          "equipo": "Cables cruzados"
+        },
+        {
+          "id": "miercoles_var5_8",
+          "nombre": "Encogimiento con Cables",
+          "series": 3,
+          "reps": "15-20",
+          "descanso": 45,
+          "equipo": "Cables"
+        }
+      ]
+    }
+  },
+  "viernes": {
+    "variacion1": {
+      "diaId": "viernes",
+      "numeroVariacion": 1,
+      "nombre": "Espalda/Bíceps - Variación 1",
+      "descripcion": "Enfoque en peso muerto y dominadas",
+      "ejercicios": [
+        {
+          "id": "viernes_var1_1",
+          "nombre": "Peso Muerto",
+          "series": 3,
+          "reps": "5-8",
+          "descanso": 120,
+          "equipo": "Barra olímpica"
+        },
+        {
+          "id": "viernes_var1_2",
+          "nombre": "Dominadas",
+          "series": 3,
+          "reps": "8-10",
+          "descanso": 90,
+          "equipo": "Barra dominadas"
+        },
+        {
+          "id": "viernes_var1_3",
+          "nombre": "Remo Barra",
+          "series": 3,
+          "reps": "8-10",
+          "descanso": 90,
+          "equipo": "Barra"
+        },
+        {
+          "id": "viernes_var1_4",
+          "nombre": "Flexión Bíceps Barra",
+          "series": 3,
+          "reps": "8-10",
+          "descanso": 60,
+          "equipo": "Barra EZ"
+        },
+        {
+          "id": "viernes_var1_5",
+          "nombre": "Remo Máquina",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 60,
+          "equipo": "Máquina remo"
+        },
+        {
+          "id": "viernes_var1_6",
+          "nombre": "Remo Mancuerna",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 60,
+          "equipo": "Mancuerna + Banco"
+        },
+        {
+          "id": "viernes_var1_7",
+          "nombre": "Flexión Bíceps Mancuerna",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 45,
+          "equipo": "Mancuernas"
+        },
+        {
+          "id": "viernes_var1_8",
+          "nombre": "Jalón Espalda",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 60,
+          "equipo": "Máquina jalón"
+        }
+      ]
+    },
+    "variacion2": {
+      "diaId": "viernes",
+      "numeroVariacion": 2,
+      "nombre": "Espalda/Bíceps - Variación 2",
+      "descripcion": "Enfoque en máquinas y cables",
+      "ejercicios": [
+        {
+          "id": "viernes_var2_1",
+          "nombre": "Jalón al Pecho",
+          "series": 3,
+          "reps": "8-10",
+          "descanso": 90,
+          "equipo": "Máquina jalón"
+        },
+        {
+          "id": "viernes_var2_2",
+          "nombre": "Remo Máquina Sentado",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 90,
+          "equipo": "Máquina remo sentado"
+        },
+        {
+          "id": "viernes_var2_3",
+          "nombre": "Jalón de Cables",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 60,
+          "equipo": "Cables"
+        },
+        {
+          "id": "viernes_var2_4",
+          "nombre": "Flexión Bíceps Cables",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 60,
+          "equipo": "Cables"
+        },
+        {
+          "id": "viernes_var2_5",
+          "nombre": "Remo Máquina Abierto",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 60,
+          "equipo": "Máquina"
+        },
+        {
+          "id": "viernes_var2_6",
+          "nombre": "Remo Inclinado",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 45,
+          "equipo": "Banco inclinado + Mancuerna"
+        },
+        {
+          "id": "viernes_var2_7",
+          "nombre": "Flexión Martillo",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 45,
+          "equipo": "Mancuernas"
+        },
+        {
+          "id": "viernes_var2_8",
+          "nombre": "Pullover",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 60,
+          "equipo": "Mancuerna + Banco"
+        }
+      ]
+    },
+    "variacion3": {
+      "diaId": "viernes",
+      "numeroVariacion": 3,
+      "nombre": "Espalda/Bíceps - Variación 3",
+      "descripcion": "Enfoque en congestión e hipertrofia",
+      "ejercicios": [
+        {
+          "id": "viernes_var3_1",
+          "nombre": "Jalón por Detrás",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 75,
+          "equipo": "Máquina jalón"
+        },
+        {
+          "id": "viernes_var3_2",
+          "nombre": "Remo Máquina Pecho",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 75,
+          "equipo": "Máquina remo"
+        },
+        {
+          "id": "viernes_var3_3",
+          "nombre": "Jalón Inverso",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 60,
+          "equipo": "Máquina"
+        },
+        {
+          "id": "viernes_var3_4",
+          "nombre": "Flexión Bíceps Concentración",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 45,
+          "equipo": "Mancuerna + Banco"
+        },
+        {
+          "id": "viernes_var3_5",
+          "nombre": "Remo Máquina Ancho",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 60,
+          "equipo": "Máquina"
+        },
+        {
+          "id": "viernes_var3_6",
+          "nombre": "Cara Jalón",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 45,
+          "equipo": "Máquina"
+        },
+        {
+          "id": "viernes_var3_7",
+          "nombre": "Flexión Bíceps Máquina",
+          "series": 3,
+          "reps": "15-20",
+          "descanso": 45,
+          "equipo": "Máquina bíceps"
+        },
+        {
+          "id": "viernes_var3_8",
+          "nombre": "Extensión Espalda",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 45,
+          "equipo": "Máquina extensión"
+        }
+      ]
+    },
+    "variacion4": {
+      "diaId": "viernes",
+      "numeroVariacion": 4,
+      "nombre": "Espalda/Bíceps - Variación 4",
+      "descripcion": "Enfoque peso libre y fuerza",
+      "ejercicios": [
+        {
+          "id": "viernes_var4_1",
+          "nombre": "Peso Muerto Sumo",
+          "series": 3,
+          "reps": "5-8",
+          "descanso": 120,
+          "equipo": "Barra olímpica"
+        },
+        {
+          "id": "viernes_var4_2",
+          "nombre": "Remo Bent Over",
+          "series": 3,
+          "reps": "8-10",
+          "descanso": 90,
+          "equipo": "Barra"
+        },
+        {
+          "id": "viernes_var4_3",
+          "nombre": "Remo Pendlay",
+          "series": 3,
+          "reps": "8-10",
+          "descanso": 90,
+          "equipo": "Barra + Banco"
+        },
+        {
+          "id": "viernes_var4_4",
+          "nombre": "Flexión Bíceps Barra Recta",
+          "series": 3,
+          "reps": "8-10",
+          "descanso": 60,
+          "equipo": "Barra recta"
+        },
+        {
+          "id": "viernes_var4_5",
+          "nombre": "Remo Mancuerna Bilateral",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 60,
+          "equipo": "Mancuernas + Banco"
+        },
+        {
+          "id": "viernes_var4_6",
+          "nombre": "Jalón Máquina",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 60,
+          "equipo": "Máquina jalón"
+        },
+        {
+          "id": "viernes_var4_7",
+          "nombre": "Flexión Bíceps Scott",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 45,
+          "equipo": "Banco Scott + Barra EZ"
+        },
+        {
+          "id": "viernes_var4_8",
+          "nombre": "Remo Bajo Cables",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 45,
+          "equipo": "Cables"
+        }
+      ]
+    },
+    "variacion5": {
+      "diaId": "viernes",
+      "numeroVariacion": 5,
+      "nombre": "Espalda/Bíceps - Variación 5",
+      "descripcion": "Enfoque en volumen y asistencia",
+      "ejercicios": [
+        {
+          "id": "viernes_var5_1",
+          "nombre": "Jalón Asistido",
+          "series": 3,
+          "reps": "10-12",
+          "descanso": 75,
+          "equipo": "Máquina asistida"
+        },
+        {
+          "id": "viernes_var5_2",
+          "nombre": "Remo Máquina T-Bar",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 75,
+          "equipo": "Máquina T-Bar"
+        },
+        {
+          "id": "viernes_var5_3",
+          "nombre": "Jalón Cuerda",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 60,
+          "equipo": "Cuerda + Máquina"
+        },
+        {
+          "id": "viernes_var5_4",
+          "nombre": "Flexión Bíceps Cable",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 45,
+          "equipo": "Cable"
+        },
+        {
+          "id": "viernes_var5_5",
+          "nombre": "Remo Máquina Cerrado",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 60,
+          "equipo": "Máquina"
+        },
+        {
+          "id": "viernes_var5_6",
+          "nombre": "Pullover Máquina",
+          "series": 3,
+          "reps": "12-15",
+          "descanso": 45,
+          "equipo": "Máquina pullover"
+        },
+        {
+          "id": "viernes_var5_7",
+          "nombre": "Flexión Bíceps Máquina",
+          "series": 3,
+          "reps": "15-20",
+          "descanso": 45,
+          "equipo": "Máquina bíceps"
+        },
+        {
+          "id": "viernes_var5_8",
+          "nombre": "Espalda Máquina",
+          "series": 3,
+          "reps": "15-20",
+          "descanso": 45,
+          "equipo": "Máquina espalda"
+        }
+      ]
+    }
+  }
+}

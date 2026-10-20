@@ -1,0 +1,66 @@
+{
+  "pecho": [
+    { "nombre": "Press Banca Inclinada", "tipo": "compuesto", "equipo": "barra", "reps": "8-10", "descanso": 90 },
+    { "nombre": "Press Banca Plana", "tipo": "compuesto", "equipo": "barra", "reps": "6-8", "descanso": 120 },
+    { "nombre": "Press Banca Declinada", "tipo": "compuesto", "equipo": "barra", "reps": "8-10", "descanso": 90 },
+    { "nombre": "Máquina Pecho", "tipo": "aislado", "equipo": "máquina", "reps": "10-12", "descanso": 60 },
+    { "nombre": "Aperturas Mancuerna", "tipo": "aislado", "equipo": "mancuerna", "reps": "12-15", "descanso": 45 },
+    { "nombre": "Cruces Polea", "tipo": "aislado", "equipo": "polea", "reps": "12-15", "descanso": 45 },
+    { "nombre": "Press Mancuerna", "tipo": "compuesto", "equipo": "mancuerna", "reps": "8-10", "descanso": 90 },
+    { "nombre": "Aperturas Máquina", "tipo": "aislado", "equipo": "máquina", "reps": "10-12", "descanso": 60 }
+  ],
+  "triceps": [
+    { "nombre": "Fondos Triceps Máquina", "tipo": "compuesto", "equipo": "máquina", "reps": "10-12", "descanso": 60 },
+    { "nombre": "Extensión Polea Arriba", "tipo": "aislado", "equipo": "polea", "reps": "12-15", "descanso": 45 },
+    { "nombre": "Flexión Codos Polea", "tipo": "aislado", "equipo": "polea", "reps": "12-15", "descanso": 45 },
+    { "nombre": "Fondos Barra", "tipo": "compuesto", "equipo": "barra", "reps": "6-10", "descanso": 90 },
+    { "nombre": "Extensión Mancuerna Sentado", "tipo": "aislado", "equipo": "mancuerna", "reps": "10-12", "descanso": 60 },
+    { "nombre": "Presión Francesa", "tipo": "aislado", "equipo": "barra", "reps": "8-10", "descanso": 60 },
+    { "nombre": "Fondos Paralelas", "tipo": "compuesto", "equipo": "barra", "reps": "8-10", "descanso": 90 },
+    { "nombre": "Jalón Triceps Cuerda", "tipo": "aislado", "equipo": "polea", "reps": "12-15", "descanso": 45 }
+  ],
+  "hombro": [
+    { "nombre": "Press Máquina Hombro", "tipo": "compuesto", "equipo": "máquina", "reps": "10-12", "descanso": 60 },
+    { "nombre": "Levantamiento Frontal", "tipo": "aislado", "equipo": "mancuerna", "reps": "10-12", "descanso": 45 },
+    { "nombre": "Elevaciones Laterales", "tipo": "aislado", "equipo": "mancuerna", "reps": "12-15", "descanso": 45 },
+    { "nombre": "Elevaciones Posteriores", "tipo": "aislado", "equipo": "mancuerna", "reps": "12-15", "descanso": 45 },
+    { "nombre": "Press Mancuerna Hombro", "tipo": "compuesto", "equipo": "mancuerna", "reps": "8-10", "descanso": 90 },
+    { "nombre": "Pájaros Máquina", "tipo": "aislado", "equipo": "máquina", "reps": "12-15", "descanso": 45 },
+    { "nombre": "Elevaciones Máquina Lateral", "tipo": "aislado", "equipo": "máquina", "reps": "10-12", "descanso": 60 },
+    { "nombre": "Press Barra Hombro", "tipo": "compuesto", "equipo": "barra", "reps": "6-8", "descanso": 120 }
+  ],
+  "pierna": [
+    { "nombre": "Sentadilla Frontal con Barra", "tipo": "compuesto", "equipo": "barra", "reps": "8-10", "descanso": 120 },
+    { "nombre": "Sentadilla Hack", "tipo": "compuesto", "equipo": "máquina", "reps": "10-12", "descanso": 90 },
+    { "nombre": "Legpress 45°", "tipo": "compuesto", "equipo": "máquina", "reps": "10-12", "descanso": 90 },
+    { "nombre": "Extensión de Pierna", "tipo": "aislado", "equipo": "máquina", "reps": "12-15", "descanso": 60 },
+    { "nombre": "Curl Femoral Acostado", "tipo": "aislado", "equipo": "máquina", "reps": "12-15", "descanso": 60 },
+    { "nombre": "Aductores", "tipo": "aislado", "equipo": "máquina", "reps": "12-15", "descanso": 45 },
+    { "nombre": "Abductores", "tipo": "aislado", "equipo": "máquina", "reps": "12-15", "descanso": 45 },
+    { "nombre": "Pantorrillas de Pie", "tipo": "aislado", "equipo": "máquina", "reps": "15-20", "descanso": 30 },
+    { "nombre": "Sentadilla Búlgara", "tipo": "compuesto", "equipo": "mancuerna", "reps": "8-10", "descanso": 90 },
+    { "nombre": "Zancadas con Mancuernas", "tipo": "compuesto", "equipo": "mancuerna", "reps": "10-12", "descanso": 60 }
+  ],
+  "espalda": [
+    { "nombre": "Peso Muerto Rumano", "tipo": "compuesto", "equipo": "barra", "reps": "6-8", "descanso": 120 },
+    { "nombre": "Peso Muerto Sumo", "tipo": "compuesto", "equipo": "barra", "reps": "8-10", "descanso": 120 },
+    { "nombre": "Jalón Polea Arriba", "tipo": "compuesto", "equipo": "polea", "reps": "10-12", "descanso": 60 },
+    { "nombre": "Remo Horizontal Máquina", "tipo": "compuesto", "equipo": "máquina", "reps": "10-12", "descanso": 60 },
+    { "nombre": "Remo Mancuerna", "tipo": "compuesto", "equipo": "mancuerna", "reps": "8-10", "descanso": 90 },
+    { "nombre": "Remo Barra", "tipo": "compuesto", "equipo": "barra", "reps": "6-8", "descanso": 120 },
+    { "nombre": "Jalón Rostro", "tipo": "aislado", "equipo": "polea", "reps": "12-15", "descanso": 45 },
+    { "nombre": "Hiperextensión", "tipo": "aislado", "equipo": "máquina", "reps": "12-15", "descanso": 60 },
+    { "nombre": "Remo Máquina Convergente", "tipo": "compuesto", "equipo": "máquina", "reps": "10-12", "descanso": 60 },
+    { "nombre": "Jalón Cuerda Polea", "tipo": "aislado", "equipo": "polea", "reps": "12-15", "descanso": 45 }
+  ],
+  "biceps": [
+    { "nombre": "Curl Barra Recta", "tipo": "compuesto", "equipo": "barra", "reps": "8-10", "descanso": 60 },
+    { "nombre": "Curl Mancuerna", "tipo": "compuesto", "equipo": "mancuerna", "reps": "10-12", "descanso": 60 },
+    { "nombre": "Curl Martillo", "tipo": "compuesto", "equipo": "mancuerna", "reps": "10-12", "descanso": 60 },
+    { "nombre": "Curl Polea", "tipo": "aislado", "equipo": "polea", "reps": "12-15", "descanso": 45 },
+    { "nombre": "Curl Máquina", "tipo": "aislado", "equipo": "máquina", "reps": "12-15", "descanso": 45 },
+    { "nombre": "Curl Scott", "tipo": "aislado", "equipo": "barra", "reps": "8-12", "descanso": 60 },
+    { "nombre": "Curl Concentrado", "tipo": "aislado", "equipo": "mancuerna", "reps": "12-15", "descanso": 45 },
+    { "nombre": "Curl Barra Z", "tipo": "compuesto", "equipo": "barra", "reps": "8-10", "descanso": 60 }
+  ]
+}

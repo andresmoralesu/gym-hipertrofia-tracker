@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💪 GYM Hipertrofia Tracker</title>
+
+    <!-- Google Sign-In -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <!-- Google Drive API -->
+    <script src="https://apis.google.com/js/api.js"></script>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/layer2.css">
+    <link rel="stylesheet" href="styles/variaciones.css">
+    <link rel="stylesheet" href="styles/entrenamiento.css">
+    <link rel="stylesheet" href="styles/sincronizacion.css">
+</head>
+<body>
+    <div id="app"></div>
+
+    <!-- Scripts (en orden de dependencias) -->
+    <script src="scripts/config.js"></script>
+    <script src="scripts/db.js"></script>
+
+    <!-- Skills -->
+    <script src="scripts/skills/variaciones.js"></script>
+    <script src="scripts/skills/timer.js"></script>
+    <script src="scripts/skills/pesos.js"></script>
+    <script src="scripts/skills/progresion.js"></script>
+    <script src="scripts/skills/backup.js"></script>
+    <script src="scripts/skills/googleDrive.js"></script>
+
+    <!-- Agentes -->
+    <script src="scripts/agentes/agenteVariacion.js"></script>
+    <script src="scripts/agentes/agenteEntrenamiento.js"></script>
+    <script src="scripts/agentes/agenteHistorial.js"></script>
+    <script src="scripts/agentes/agenteSincronizacion.js"></script>
+
+    <!-- UI -->
+    <script src="scripts/ui/componentes.js"></script>
+    <script src="scripts/ui/renderer.js"></script>
+    <script src="scripts/ui/eventos.js"></script>
+
+    <!-- Main (con module support para imports) -->
+    <script type="module" src="scripts/main.js"></script>
+</body>
+</html>

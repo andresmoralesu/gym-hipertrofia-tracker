@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Opciones de Paleta de Colores</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #0a0a0a;
+      color: #e0e0e0;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 32px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .option-card {
+      background: #1e1e1e;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 24px;
+      transition: all 0.3s;
+    }
+
+    .option-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .option-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .option-desc {
+      font-size: 14px;
+      color: #aaa;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .color-swatches {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .swatch {
+      flex: 1;
+      height: 80px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: white;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .swatch-label {
+      font-size: 10px;
+      opacity: 0.8;
+    }
+
+    .preview-button {
+      width: 100%;
+      padding: 12px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 16px;
+      transition: all 0.3s;
+    }
+
+    .preview-button:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .preview-small {
+      width: 100%;
+      height: 120px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      border-radius: 8px;
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    /* Opción A: Cian + Púrpura */
+    .option-a {
+      --primary: #00d9ff;
+      --secondary: #7c3aed;
+    }
+
+    /* Opción B: Coral + Dorado */
+    .option-b {
+      --primary: #ff6b6b;
+      --secondary: #ffd700;
+    }
+
+    /* Opción C: Cian + Magenta */
+    .option-c {
+      --primary: #0ea5e9;
+      --secondary: #ec4899;
+    }
+
+    /* Opción D: Verde + Azul */
+    .option-d {
+      --primary: #10b981;
+      --secondary: #06b6d4;
+    }
+
+    .comparison {
+      margin-top: 60px;
+      padding: 40px;
+      background: #1e1e1e;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .comparison h2 {
+      font-size: 24px;
+      margin-bottom: 24px;
+      color: #fff;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .comparison-table th {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .comparison-table td {
+      padding: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .comparison-table tr:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .color-box {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      margin-right: 8px;
+      vertical-align: middle;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .rating {
+      color: #ffd700;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 Opciones de Paleta para Dark Mode</h1>
+
+    <div class="options-grid">
+      <!-- OPCIÓN A -->
+      <div class="option-card option-a">
+        <div class="option-title">
+          <span>🔵🟣</span>
+          <span>Opción A: Energético Frío</span>
+        </div>
+        <div class="option-desc">
+          <strong>Primario:</strong> Cian (#00d9ff)<br>
+          <strong>Secundario:</strong> Púrpura (#7c3aed)<br>
+          <strong>Vibe:</strong> Moderno, tech, dinámico
+        </div>
+        <div class="color-swatches">
+          <div class="swatch" style="background: #00d9ff; color: #000;">
+            <div>#00d9ff</div>
+            <div class="swatch-label">PRIMARY</div>
+          </div>
+          <div class="swatch" style="background: #7c3aed;">
+            <div>#7c3aed</div>
+            <div class="swatch-label">SECONDARY</div>
+          </div>
+        </div>
+        <div class="preview-small"></div>
+        <button class="preview-button">✓ Elegir Opción A</button>
+      </div>
+
+      <!-- OPCIÓN B -->
+      <div class="option-card option-b">
+        <div class="option-title">
+          <span>🔥✨</span>
+          <span>Opción B: Coral + Dorado</span>
+        </div>
+        <div class="option-desc">
+          <strong>Primario:</strong> Coral (#ff6b6b)<br>
+          <strong>Secundario:</strong> Dorado (#ffd700)<br>
+          <strong>Vibe:</strong> Energético, motivante, gym
+        </div>
+        <div class="color-swatches">
+          <div class="swatch" style="background: #ff6b6b;">
+            <div>#ff6b6b</div>
+            <div class="swatch-label">PRIMARY</div>
+          </div>
+          <div class="swatch" style="background: #ffd700; color: #000;">
+            <div>#ffd700</div>
+            <div class="swatch-label">SECONDARY</div>
+          </div>
+        </div>
+        <div class="preview-small"></div>
+        <button class="preview-button">✓ Elegir Opción B</button>
+      </div>
+
+      <!-- OPCIÓN C -->
+      <div class="option-card option-c">
+        <div class="option-title">
+          <span>💫🎨</span>
+          <span>Opción C: Cian + Magenta</span>
+        </div>
+        <div class="option-desc">
+          <strong>Primario:</strong> Cian (#0ea5e9)<br>
+          <strong>Secundario:</strong> Magenta (#ec4899)<br>
+          <strong>Vibe:</strong> Moderno, llamativo, vibrante
+        </div>
+        <div class="color-swatches">
+          <div class="swatch" style="background: #0ea5e9;">
+            <div>#0ea5e9</div>
+            <div class="swatch-label">PRIMARY</div>
+          </div>
+          <div class="swatch" style="background: #ec4899;">
+            <div>#ec4899</div>
+            <div class="swatch-label">SECONDARY</div>
+          </div>
+        </div>
+        <div class="preview-small"></div>
+        <button class="preview-button">✓ Elegir Opción C</button>
+      </div>
+
+      <!-- OPCIÓN D -->
+      <div class="option-card option-d">
+        <div class="option-title">
+          <span>🌿💎</span>
+          <span>Opción D: Verde + Azul</span>
+        </div>
+        <div class="option-desc">
+          <strong>Primario:</strong> Verde neón (#10b981)<br>
+          <strong>Secundario:</strong> Azul claro (#06b6d4)<br>
+          <strong>Vibe:</strong> Wellness, professional, health
+        </div>
+        <div class="color-swatches">
+          <div class="swatch" style="background: #10b981;">
+            <div>#10b981</div>
+            <div class="swatch-label">PRIMARY</div>
+          </div>
+          <div class="swatch" style="background: #06b6d4;">
+            <div>#06b6d4</div>
+            <div class="swatch-label">SECONDARY</div>
+          </div>
+        </div>
+        <div class="preview-small"></div>
+        <button class="preview-button">✓ Elegir Opción D</button>
+      </div>
+    </div>
+
+    <!-- COMPARISON TABLE -->
+    <div class="comparison">
+      <h2>📊 Comparativa</h2>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Opción</th>
+            <th>Primario</th>
+            <th>Secundario</th>
+            <th>Energía</th>
+            <th>Legibilidad</th>
+            <th>Gym/Fitness</th>
+            <th>Premium</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>A: Cian+Púrpura</strong></td>
+            <td><span class="color-box" style="background: #00d9ff;"></span>#00d9ff</td>
+            <td><span class="color-box" style="background: #7c3aed;"></span>#7c3aed</td>
+            <td><span class="rating">★★★★★</span></td>
+            <td>⭐⭐⭐⭐</td>
+            <td>⭐⭐⭐</td>
+            <td>⭐⭐⭐⭐⭐</td>
+          </tr>
+          <tr>
+            <td><strong>B: Coral+Dorado</strong></td>
+            <td><span class="color-box" style="background: #ff6b6b;"></span>#ff6b6b</td>
+            <td><span class="color-box" style="background: #ffd700;"></span>#ffd700</td>
+            <td><span class="rating">★★★★★</span></td>
+            <td>⭐⭐⭐⭐⭐</td>
+            <td>⭐⭐⭐⭐⭐</td>
+            <td>⭐⭐⭐</td>
+          </tr>
+          <tr>
+            <td><strong>C: Cian+Magenta</strong></td>
+            <td><span class="color-box" style="background: #0ea5e9;"></span>#0ea5e9</td>
+            <td><span class="color-box" style="background: #ec4899;"></span>#ec4899</td>
+            <td><span class="rating">★★★★</span></td>
+            <td>⭐⭐⭐⭐</td>
+            <td>⭐⭐⭐⭐</td>
+            <td>⭐⭐⭐⭐</td>
+          </tr>
+          <tr>
+            <td><strong>D: Verde+Azul</strong></td>
+            <td><span class="color-box" style="background: #10b981;"></span>#10b981</td>
+            <td><span class="color-box" style="background: #06b6d4;"></span>#06b6d4</td>
+            <td><span class="rating">★★★</span></td>
+            <td>⭐⭐⭐⭐⭐</td>
+            <td>⭐⭐⭐⭐</td>
+            <td>⭐⭐⭐</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top: 24px; padding: 16px; background: rgba(16, 185, 129, 0.1); border-left: 3px solid #10b981; border-radius: 8px;">
+        <strong>💡 Mi recomendación:</strong> Para una app de gym, la <strong>Opción B (Coral + Dorado)</strong> tiene mejor energía y motivación. La <strong>Opción A (Cian + Púrpura)</strong> es más premium y moderna. ¿Cuál prefieres?
+      </div>
+    </div>
+  </div>
+</body>
+</html>

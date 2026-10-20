@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GYM Hipertrofia Tracker — Screen Mockups</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #d4fb50;
+      --secondary: #14130f;
+      --success: #10b981;
+      --danger: #ef4444;
+      --gray-light: #ecf0f1;
+      --gray-dark: #2c3e50;
+      --bg-dark: #0a0a0a;
+      --surface-dark: #1a1a1a;
+      --text-dark: #f0f0f0;
+      --ink: #14130f;
+      --border-radius: 12px;
+      --dark-mode: true;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-dark);
+      padding: 40px 20px 20px 20px;
+    }
+
+    .mockup-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding-bottom: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 40px;
+      font-size: 32px;
+    }
+
+    .screens-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .phone-frame {
+      background: var(--surface-dark);
+      border-radius: 40px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      border: 10px solid #1a1a1a;
+      aspect-ratio: 390 / 844;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .notch {
+      height: 28px;
+      background: #1a1a1a;
+      position: relative;
+      z-index: 10;
+    }
+
+    .screen-content {
+      flex: 1;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-dark);
+      position: relative;
+      padding-bottom: 60px;
+    }
+
+    .bottom-nav {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: var(--surface-dark);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      flex: 1;
+      height: 100%;
+      justify-content: center;
+      border: none;
+      background: none;
+      color: #888;
+      font-size: 11px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .nav-item:hover {
+      color: var(--primary);
+    }
+
+    .nav-item.active {
+      color: var(--primary);
+    }
+
+    .nav-icon {
+      font-size: 20px;
+    }
+
+    .screen-title {
+      text-align: center;
+      font-size: 12px;
+      color: #666;
+      padding: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-weight: 600;
+    }
+
+    /* ===== HOME SCREEN ===== */
+    .home-screen {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header-section {
+      margin-bottom: 24px;
+    }
+
+    .date-label {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 4px;
+    }
+
+    .greeting {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .variation-card {
+      background: linear-gradient(135deg, rgba(212, 251, 80, 0.15) 0%, rgba(20, 19, 15, 0.8) 100%);
+      border-left: 4px solid var(--primary);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 24px;
+      color: var(--text-dark);
+      border: 1px solid rgba(212, 251, 80, 0.2);
+    }
+
+    .variation-card h2 {
+      font-size: 14px;
+      opacity: 0.8;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #aaa;
+    }
+
+    .variation-card .current {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--primary);
+    }
+
+    .variation-badge {
+      display: inline-block;
+      background: rgba(212, 251, 80, 0.15);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--primary);
+      border: 1px solid rgba(212, 251, 80, 0.3);
+    }
+
+    .exercise-section h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+
+    .exercise-item {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .exercise-number {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .exercise-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .exercise-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 2px;
+    }
+
+    .exercise-details {
+      font-size: 11px;
+      color: #888;
+    }
+
+    .start-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 14px 20px;
+      border-radius: var(--border-radius);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: auto;
+      width: 100%;
+    }
+
+    /* ===== WORKOUT SCREEN ===== */
+    .workout-screen {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .workout-header {
+      background: var(--secondary);
+      color: white;
+      padding: 16px;
+      margin: -20px -20px 20px -20px;
+      text-align: center;
+    }
+
+    .workout-header .title {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 4px;
+    }
+
+    .workout-header .day {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .timer-display {
+      background: linear-gradient(135deg, #333 0%, #555 100%);
+      color: white;
+      padding: 24px;
+      border-radius: var(--border-radius);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .timer-label {
+      font-size: 12px;
+      opacity: 0.8;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .timer-value {
+      font-size: 48px;
+      font-weight: 700;
+      font-family: 'Courier New', monospace;
+    }
+
+    .current-exercise {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .current-exercise label {
+      font-size: 11px;
+      color: #888;
+      text-transform: uppercase;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .current-exercise .exercise-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--secondary);
+    }
+
+    .set-counter {
+      background: rgba(255, 107, 53, 0.1);
+      border: 2px solid var(--primary);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .set-counter label {
+      font-size: 12px;
+      color: #888;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .set-counter .number {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .weight-input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-dark);
+    }
+
+    .weight-input::placeholder {
+      color: #666;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-dark);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* ===== HISTORY SCREEN ===== */
+    .history-screen {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .filter-section {
+      margin-bottom: 20px;
+    }
+
+    .filter-section label {
+      font-size: 12px;
+      color: #888;
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .filter-select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      font-size: 14px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-dark);
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 4px;
+    }
+
+    .stat-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .history-table {
+      font-size: 12px;
+      width: 100%;
+      border-collapse: collapse;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .history-table th {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 8px 4px;
+      text-align: left;
+      color: #888;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: sticky;
+      top: 0;
+    }
+
+    .history-table td {
+      padding: 8px 4px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--text-dark);
+    }
+
+    .history-table td:first-child {
+      font-weight: 600;
+    }
+
+    .history-table .number {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* ===== SETTINGS SCREEN ===== */
+    .settings-screen {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .settings-section {
+      margin-bottom: 24px;
+    }
+
+    .settings-section h3 {
+      font-size: 12px;
+      color: #666;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .settings-item {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .settings-item label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .settings-item .value {
+      font-size: 12px;
+      color: #888;
+    }
+
+    .google-btn {
+      width: 100%;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--border-radius);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      color: var(--text-dark);
+    }
+
+    .google-btn.connected {
+      background: rgba(39, 174, 96, 0.2);
+      color: var(--success);
+      border-color: var(--success);
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .status-badge.online {
+      background: rgba(39, 174, 96, 0.1);
+      color: var(--success);
+    }
+
+    .status-badge.offline {
+      background: rgba(231, 76, 60, 0.1);
+      color: var(--danger);
+    }
+
+    .danger-zone {
+      background: rgba(231, 76, 60, 0.15);
+      border: 1px solid rgba(231, 76, 60, 0.4);
+      padding: 12px;
+      border-radius: 8px;
+    }
+
+    .danger-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--danger);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* ===== ANNOTATIONS ===== */
+    .annotations {
+      background: var(--surface-dark);
+      border-radius: var(--border-radius);
+      padding: 24px;
+      margin-top: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .annotations h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+
+    .annotation {
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .annotation:last-child {
+      border-bottom: none;
+    }
+
+    .annotation h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .annotation p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #aaa;
+      margin-bottom: 8px;
+    }
+
+    .annotation ul {
+      margin-left: 20px;
+      font-size: 14px;
+      color: #aaa;
+      line-height: 1.6;
+    }
+
+    .annotation li {
+      margin-bottom: 4px;
+    }
+
+    @media (max-width: 768px) {
+      .screens-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="mockup-container">
+    <h1>GYM Hipertrofia Tracker — Screen Mockups</h1>
+
+    <div class="screens-grid">
+      <!-- HOME SCREEN -->
+      <div class="phone-frame">
+        <div class="notch"></div>
+        <div class="screen-content">
+          <div class="screen-title">HOME - Página Principal</div>
+          <div class="home-screen">
+            <div class="header-section">
+              <div class="date-label">Lunes, 6 de Oct</div>
+              <div class="greeting">¡Hola!</div>
+            </div>
+
+            <div class="variation-card">
+              <h2>Variación Actual</h2>
+              <div class="current">Semana 3</div>
+              <div class="variation-badge">Pierna • Viernes</div>
+            </div>
+
+            <div class="exercise-section">
+              <h3>Ejercicios Hoy</h3>
+
+              <div class="exercise-item">
+                <div class="exercise-number">1</div>
+                <div class="exercise-info">
+                  <div class="exercise-name">Sentadilla Smith</div>
+                  <div class="exercise-details">5 × 8 reps • 90s descanso</div>
+                </div>
+              </div>
+
+              <div class="exercise-item">
+                <div class="exercise-number">2</div>
+                <div class="exercise-info">
+                  <div class="exercise-name">Peso Muerto Rumano</div>
+                  <div class="exercise-details">4 × 10 reps • 60s descanso</div>
+                </div>
+              </div>
+
+              <div class="exercise-item">
+                <div class="exercise-number">3</div>
+                <div class="exercise-info">
+                  <div class="exercise-name">Hack Machine</div>
+                  <div class="exercise-details">4 × 12 reps • 45s descanso</div>
+                </div>
+              </div>
+            </div>
+
+            <button class="start-btn">Comenzar Entrenamiento</button>
+          </div>
+          <div class="bottom-nav">
+            <button class="nav-item active">
+              <div class="nav-icon">🏠</div>
+              <span>Home</span>
+            </button>
+            <button class="nav-item">
+              <div class="nav-icon">💪</div>
+              <span>Workout</span>
+            </button>
+            <button class="nav-item">
+              <div class="nav-icon">📊</div>
+              <span>History</span>
+            </button>
+            <button class="nav-item">
+              <div class="nav-icon">⚙️</div>
+              <span>Settings</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- WORKOUT SCREEN -->
+      <div class="phone-frame">
+        <div class="notch"></div>
+        <div class="screen-content">
+          <div class="workout-header">
+            <div class="title">Entrenamiento Activo</div>
+            <div class="day">Viernes • Pierna</div>
+          </div>
+
+          <div class="workout-screen">
+            <div class="timer-display">
+              <div class="timer-label">Descanso</div>
+              <div class="timer-value">00:45</div>
+            </div>
+
+            <div class="current-exercise">
+              <label>Ejercicio Actual</label>
+              <div class="exercise-name">Sentadilla Smith</div>
+            </div>
+
+            <div class="set-counter">
+              <label>Serie</label>
+              <div class="number">3 / 5</div>
+            </div>
+
+            <input type="number" class="weight-input" placeholder="Peso levantado (kg)">
+
+            <div class="action-buttons">
+              <button class="btn btn-success">✓ Serie OK</button>
+              <button class="btn btn-secondary">Saltar</button>
+            </div>
+
+            <div class="current-exercise">
+              <label>Próximo Ejercicio</label>
+              <div class="exercise-name">Peso Muerto Rumano</div>
+            </div>
+          </div>
+          <div class="bottom-nav">
+            <button class="nav-item">
+              <div class="nav-icon">🏠</div>
+              <span>Home</span>
+            </button>
+            <button class="nav-item active">
+              <div class="nav-icon">💪</div>
+              <span>Workout</span>
+            </button>
+            <button class="nav-item">
+              <div class="nav-icon">📊</div>
+              <span>History</span>
+            </button>
+            <button class="nav-item">
+              <div class="nav-icon">⚙️</div>
+              <span>Settings</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- HISTORY SCREEN -->
+      <div class="phone-frame">
+        <div class="notch"></div>
+        <div class="screen-content">
+          <div class="screen-title">HISTORY - Historial</div>
+
+          <div class="history-screen">
+            <div class="filter-section">
+              <label>Ejercicio</label>
+              <select class="filter-select">
+                <option>Sentadilla Smith</option>
+                <option>Peso Muerto</option>
+                <option>Hack Machine</option>
+              </select>
+            </div>
+
+            <div class="stats-row">
+              <div class="stat-card">
+                <div class="stat-label">Máximo</div>
+                <div class="stat-value">150 kg</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Promedio</div>
+                <div class="stat-value">135 kg</div>
+              </div>
+            </div>
+
+            <table class="history-table">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Series</th>
+                  <th>Peso</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>29 Sep</td>
+                  <td>5 × 8</td>
+                  <td><span class="number">150 kg</span></td>
+                </tr>
+                <tr>
+                  <td>22 Sep</td>
+                  <td>5 × 8</td>
+                  <td><span class="number">145 kg</span></td>
+                </tr>
+                <tr>
+                  <td>15 Sep</td>
+                  <td>5 × 8</td>
+                  <td><span class="number">140 kg</span></td>
+                </tr>
+                <tr>
+                  <td>08 Sep</td>
+                  <td>5 × 10</td>
+                  <td><span class="number">135 kg</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="bottom-nav">
+            <button class="nav-item">
+              <div class="nav-icon">🏠</div>
+              <span>Home</span>
+            </button>
+            <button class="nav-item">
+              <div class="nav-icon">💪</div>
+              <span>Workout</span>
+            </button>
+            <button class="nav-item active">
+              <div class="nav-icon">📊</div>
+              <span>History</span>
+            </button>
+            <button class="nav-item">
+              <div class="nav-icon">⚙️</div>
+              <span>Settings</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SETTINGS SCREEN -->
+      <div class="phone-frame">
+        <div class="notch"></div>
+        <div class="screen-content">
+          <div class="screen-title">SETTINGS - Configuración</div>
+
+          <div class="settings-screen">
+            <div class="settings-section">
+              <h3>Sincronización</h3>
+              <button class="google-btn connected">
+                ✓ Conectado a Google
+              </button>
+              <div class="settings-item">
+                <label>Estado</label>
+                <span class="status-badge online">EN LÍNEA</span>
+              </div>
+              <div class="settings-item">
+                <label>Última sincronización</label>
+                <div class="value">Hace 2 minutos</div>
+              </div>
+              <button class="btn btn-secondary" style="width: 100%; margin-top: 8px;">
+                Sincronizar Ahora
+              </button>
+            </div>
+
+            <div class="settings-section">
+              <h3>Aplicación</h3>
+              <div class="settings-item">
+                <label>Versión</label>
+                <div class="value">1.0.0</div>
+              </div>
+              <div class="settings-item">
+                <label>Modo Oscuro</label>
+                <div style="width: 44px; height: 24px; background: #ccc; border-radius: 12px;"></div>
+              </div>
+            </div>
+
+            <div class="settings-section">
+              <h3>Datos</h3>
+              <div class="danger-zone">
+                <button class="danger-btn">🗑 Borrar Historial</button>
+              </div>
+            </div>
+          </div>
+          <div class="bottom-nav">
+            <button class="nav-item">
+              <div class="nav-icon">🏠</div>
+              <span>Home</span>
+            </button>
+            <button class="nav-item">
+              <div class="nav-icon">💪</div>
+              <span>Workout</span>
+            </button>
+            <button class="nav-item">
+              <div class="nav-icon">📊</div>
+              <span>History</span>
+            </button>
+            <button class="nav-item active">
+              <div class="nav-icon">⚙️</div>
+              <span>Settings</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ANNOTATIONS -->
+    <div class="annotations">
+      <h2>📋 Notas de Diseño</h2>
+
+      <div class="annotation">
+        <h3>🏠 HOME - Página Principal</h3>
+        <p><strong>Propósito:</strong> Punto de entrada. Muestra variación actual, ejercicios del día y botón para comenzar.</p>
+        <ul>
+          <li><strong>Variación Card:</strong> Fondo oscuro con borde lima y accent. "Semana 3" resaltado en lima. Grupo muscular como badge lima.</li>
+          <li><strong>Exercise List:</strong> Numerada con círculos lima. Cada item muestra nombre, series, reps y descanso.</li>
+          <li><strong>CTA Principal:</strong> Botón lima prominente "Comenzar Entrenamiento" al final. Alto contraste para clickeability.</li>
+          <li><strong>Next:</strong> Al hacer clic, navega a WORKOUT screen.</li>
+        </ul>
+      </div>
+
+      <div class="annotation">
+        <h3>💪 WORKOUT - Pantalla de Entrenamiento</h3>
+        <p><strong>Propósito:</strong> Timer visual, logging de pesos, navegación entre ejercicios.</p>
+        <ul>
+          <li><strong>Timer:</strong> Monospace, 48px, fondo oscuro gradiente. Cuenta el descanso entre series.</li>
+          <li><strong>Set Counter:</strong> Muestra "3 / 5" para feedback visual. Border naranja.</li>
+          <li><strong>Weight Input:</strong> Campo para kg levantados. Se guarda en historialPesos DB.</li>
+          <li><strong>Action Buttons:</strong> Verde "✓ Serie OK" para completar + Secundario "Saltar".</li>
+          <li><strong>UX:</strong> Al completar todas las series, pasa al próximo ejercicio automáticamente.</li>
+        </ul>
+      </div>
+
+      <div class="annotation">
+        <h3>📊 HISTORY - Historial</h3>
+        <p><strong>Propósito:</strong> Visualizar progresión histórica de ejercicios específicos.</p>
+        <ul>
+          <li><strong>Filter:</strong> Dropdown para seleccionar ejercicio (autopopulado desde datos históricos).</li>
+          <li><strong>Stats Cards:</strong> Máximo y promedio de peso levantado (resaltado en lima, calculado en tiempo real).</li>
+          <li><strong>Table:</strong> Fecha, series, peso. Sorteable por fecha. Peso resaltado en lima para rápida identificación.</li>
+          <li><strong>Data Source:</strong> Lee de historialPesos store en IndexedDB.</li>
+          <li><strong>Performance:</strong> Scrollable si hay muchos registros.</li>
+        </ul>
+      </div>
+
+      <div class="annotation">
+        <h3>⚙️ SETTINGS - Configuración</h3>
+        <p><strong>Propósito:</strong> Google Drive sync, preferencias de app, peligro zone (borrar datos).</p>
+        <ul>
+          <li><strong>Google Sign-In:</strong> Botón blanco por defecto. Verde + checkmark cuando conectado.</li>
+          <li><strong>Sync Status:</strong> Badge que dice "EN LÍNEA" o "DESCONECTADO" según conectividad.</li>
+          <li><strong>Manual Sync:</strong> Botón secundario para forzar sincronización inmediata.</li>
+          <li><strong>Dark Mode:</strong> Toggle (placeholder por ahora, implementar en Layer 6).</li>
+          <li><strong>Danger Zone:</strong> "Borrar Historial" con fondo rojo suave para disuadir clicks accidentales.</li>
+        </ul>
+      </div>
+
+      <div class="annotation">
+        <h3>🎨 Design System Compliance</h3>
+        <ul>
+          <li><strong>Colors:</strong> Dark mode con lima (#d4fb50) como accent primario. Fondos oscuros (#0a0a0a, #1a1a1a), tinta (#14130f), texto claro (#f0f0f0).</li>
+          <li><strong>Lima Accent (#d4fb50):</strong> Usado para botones, números, nav activo, highlights, badges. NO en grandes áreas de fondo con texto claro encima.</li>
+          <li><strong>Typography:</strong> Jerarquía respetada (headings 24px, body 16px, small 14px, captions 12px).</li>
+          <li><strong>Spacing:</strong> 8px grid. Padding consistente 20px móvil, gaps 12-24px entre elementos.</li>
+          <li><strong>Components:</strong> Buttons, cards, inputs siguen Design System exactamente.</li>
+          <li><strong>Accessibility:</strong> Touch targets ≥44px. Contraste 4.5:1 verificado. Responsive desde 390px.</li>
+          <li><strong>Mobile-First:</strong> Layouts adaptativos. Notch y bezels considerados.</li>
+        </ul>
+      </div>
+
+      <div class="annotation">
+        <h3>📱 Responsive Behavior</h3>
+        <ul>
+          <li><strong>390px (Mobile):</strong> Screens tal como se ven aquí. Full width, stacked layout.</li>
+          <li><strong>768px+ (Tablet):</strong> Tab navigation horizontal en top. Side-by-side layout posible.</li>
+          <li><strong>1200px+ (Desktop):</strong> Split view con sidebar navigation. Exercise list in grid.</li>
+          <li><strong>No necesita rediseño:</strong> Layouts flexibles escalan bien a cualquier resolución.</li>
+        </ul>
+      </div>
+
+      <div class="annotation">
+        <h3>🔄 Navigation Flow</h3>
+        <p>Tab Navigation (implementar en Layer 2):</p>
+        <ul>
+          <li><strong>Home Tab:</strong> Muestra HOME screen (variación actual, ejercicios).</li>
+          <li><strong>Workout Tab:</strong> WORKOUT screen (solo disponible si hay entrenamiento activo).</li>
+          <li><strong>History Tab:</strong> HISTORY screen (tabla de progresión histórica).</li>
+          <li><strong>Settings Tab:</strong> SETTINGS screen (config y sync).</li>
+        </ul>
+      </div>
+
+      <div class="annotation">
+        <h3>✅ Listo para Layer 2</h3>
+        <p>Estos mockups son el blueprint exacto para implementar:</p>
+        <ul>
+          <li>Componentes UI en `scripts/ui/componentes.js`</li>
+          <li>Renderer en `scripts/ui/renderer.js`</li>
+          <li>Event listeners en `scripts/ui/eventos.js`</li>
+          <li>AgenteVariacion, AgenteEntrenamiento, AgenteHistorial en `scripts/agentes/`</li>
+          <li>Estilos finales en `styles/` (expandir desde main.css)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
