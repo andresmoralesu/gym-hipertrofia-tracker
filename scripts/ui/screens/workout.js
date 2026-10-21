@@ -128,7 +128,8 @@ export class WorkoutScreen {
     try {
       const estado = await this.db.obtenerDocumento("entrenamientos", "actual");
 
-      if (!estado) {
+      // El avance guardado solo vale el mismo día; otro día se empieza de cero
+      if (!estado || estado.fechaEntreno !== this.fechaHoy()) {
         // Crear estado inicial si no existe
         const configDoc = await this.db.obtenerDocumento("config", "variacionActual");
         if (!configDoc || !configDoc.value) {
@@ -253,7 +254,10 @@ export class WorkoutScreen {
       // Avanzar a próxima serie o ejercicio
       if (estado.serieActual < estado.totalSeries) {
         estado.serieActual++;
-        // Re-renderizar timer
+        // Actualizar el contador en pantalla y guardar el avance
+        this.actualizarContadorSerie(estado);
+        await this.persistirEstado(estado);
+        // Reiniciar timer de descanso
         this.iniciarTimer(document.querySelector(".workout-screen"), estado.ejercicioActual.descanso);
       } else {
         // Mostrar modal de ejercicio completado
@@ -262,6 +266,42 @@ export class WorkoutScreen {
     } catch (error) {
       console.error("❌ Error guardando serie:", error);
       alert("Error al guardar la serie");
+    }
+  }
+
+  /**
+   * Fecha de hoy (YYYY-MM-DD, hora local)
+   */
+  fechaHoy() {
+    const d = new Date();
+    const mes = String(d.getMonth() + 1).padStart(2, "0");
+    const dia = String(d.getDate()).padStart(2, "0");
+    return `${d.getFullYear()}-${mes}-${dia}`;
+  }
+
+  /**
+   * Actualizar en pantalla el contador "Serie 1 / 3"
+   */
+  actualizarContadorSerie(estado) {
+    const contador = document.querySelector("#set-counter");
+    if (contador) {
+      contador.textContent = `${estado.serieActual} / ${estado.totalSeries}`;
+    }
+  }
+
+  /**
+   * Guardar el avance (ejercicio y serie actual) para que no se pierda
+   * al cambiar de pestaña o recargar la app
+   */
+  async persistirEstado(estado) {
+    try {
+      await this.db.escribirDocumento("entrenamientos", {
+        ...estado,
+        id: "actual",
+        fechaEntreno: this.fechaHoy()
+      });
+    } catch (error) {
+      console.warn("⚠️ No se pudo guardar el avance del entrenamiento:", error);
     }
   }
 
@@ -326,6 +366,7 @@ export class WorkoutScreen {
 
         const nuevoEstado = {
           id: "actual",  // IndexedDB necesita una clave primaria
+          fechaEntreno: this.fechaHoy(),
           ejercicioActual: siguienteEjercicio,
           serieActual: 1,
           totalSeries: siguienteEjercicio.series || 3,
@@ -358,8 +399,11 @@ export class WorkoutScreen {
       if (estado.serieActual < estado.totalSeries) {
         estado.serieActual++;
         console.log(`⏭️ Serie saltada. Siguiente: ${estado.serieActual}`);
+        this.actualizarContadorSerie(estado);
+        await this.persistirEstado(estado);
+        this.iniciarTimer(document.querySelector(".workout-screen"), estado.ejercicioActual.descanso);
       } else {
-        alert("¡Ejercicio completado!");
+        this.mostrarModalEjercicioCompletado(estado);
       }
     }
   }
