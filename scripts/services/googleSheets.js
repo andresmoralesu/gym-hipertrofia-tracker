@@ -154,32 +154,89 @@ export class GoogleSheetsService {
 }
 
   /**
-   * Restaurar datos desde Google Sheets
-   * Nota: Por ahora usa datos locales como backup
+   * Leer el historial guardado en la hoja de Google Sheets (vía Apps Script, JSONP)
+   */
+  obtenerHistorialDeSheet() {
+    return new Promise((resolve, reject) => {
+      const callbackName = `sheetsCb_${Date.now()}_${Math.floor(Math.random() * 1e6)}`;
+      const params = new URLSearchParams({
+        action: 'obtenerHistorial',
+        callback: callbackName
+      });
+
+      const script = document.createElement('script');
+
+      const cleanup = () => {
+        clearTimeout(timer);
+        delete window[callbackName];
+        script.remove();
+      };
+
+      const timer = setTimeout(() => {
+        cleanup();
+        reject(new Error('Tiempo de espera agotado al leer el backup.'));
+      }, 30000);
+
+      window[callbackName] = (data) => {
+        cleanup();
+        if (data && data.success) {
+          resolve(data.registros || []);
+        } else {
+          reject(new Error((data && data.error) || 'No se pudo leer el backup'));
+        }
+      };
+
+      script.onerror = () => {
+        cleanup();
+        reject(new Error('No se pudo conectar con Google Apps Script.'));
+      };
+
+      script.src = `${this.scriptUrl}?${params.toString()}`;
+      document.head.appendChild(script);
+    });
+  }
+
+  /**
+   * Restaurar datos desde Google Sheets.
+   * Lee la hoja, descarta duplicados (la sincronización agrega todo el
+   * historial cada vez) y omite lo que el dispositivo ya tiene.
    */
   async restoreFromSheet(dbAdapter) {
     try {
-      console.log('📥 Iniciando restauración desde backup...');
+      console.log('📥 Iniciando restauración desde Google Sheets...');
 
-      const backupData = localStorage.getItem('lastSyncedData');
-      if (!backupData) {
-        throw new Error('No hay backup disponible');
+      const registros = await this.obtenerHistorialDeSheet();
+      if (registros.length === 0) {
+        throw new Error('No hay backup disponible en Google Sheets. Primero usa "Sincronizar Ahora" en el dispositivo que tiene los datos.');
       }
 
-      const datos = JSON.parse(backupData);
+      // Cada serie tiene su propia marca de tiempo, así que fecha (al segundo) +
+      // ejercicio + peso identifica un registro. No se usan reps/series porque la
+      // hoja las guarda como número ("8-10" pasa a 8) y no coincidirían.
+      const claveDe = (r) =>
+        [String(r.fecha).slice(0, 19), r.ejercicio, Number(r.peso)].join('|');
 
-      // Restaurar en IndexedDB
-      for (const record of datos) {
+      // Claves de lo que ya existe en este dispositivo
+      const existentes = await dbAdapter.obtenerTodos('historialPesos');
+      const vistas = new Set(existentes.map(claveDe));
+
+      let importados = 0;
+      for (const record of registros) {
+        const clave = claveDe(record);
+        if (vistas.has(clave)) continue;
+        vistas.add(clave);
+
         await dbAdapter.escribirDocumento('historialPesos', {
           ...record,
-          id: `restore-${Date.now()}-${Math.random()}`
+          id: `restore-${clave}`   // determinista: restaurar dos veces no duplica
         });
+        importados++;
       }
 
-      console.log(`✅ Restauración completada: ${datos.length} registros importados`);
+      console.log(`✅ Restauración completada: ${importados} nuevos de ${registros.length} en la hoja`);
 
       return {
-        recordsRestored: datos.length,
+        recordsRestored: importados,
         timestamp: new Date().toISOString()
       };
 
