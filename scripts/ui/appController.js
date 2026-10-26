@@ -76,6 +76,16 @@ export class AppController {
       }
     });
 
+    // WORKOUT: si se entra desde la barra inferior (sin pasar por "Comenzar Entrenamiento")
+    // y la pantalla aún está vacía, se renderiza. Si ya está montada se deja tal cual
+    // para no reiniciar el temporizador ni borrar el peso que se estaba escribiendo.
+    this.router.navButtons.workout?.addEventListener("click", async () => {
+      const contenedor = this.router.screens.workout;
+      if (!contenedor?.querySelector(".workout-screen")) {
+        await this.renderScreen("workout");
+      }
+    });
+
     // Recargar HOME cuando vuelva a ese tab
     this.router.navButtons.home?.addEventListener("click", async () => {
       await this.renderScreen("home");

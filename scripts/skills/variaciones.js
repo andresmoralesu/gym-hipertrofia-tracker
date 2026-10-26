@@ -2,7 +2,7 @@
  * 🎯 SKILLS: VARIACIONES SEMANALES
  *
  * Funciones puras para:
- * 1. Calcular número de semana ISO
+ * 1. Calcular número de semana del programa (semana 1 = CONFIG.FECHA_INICIO_PROGRAMA)
  * 2. Mapear semana a variación (con ciclo)
  * 3. Obtener variación de la BD
  * 4. Detectar cambios vs semana anterior
@@ -14,54 +14,46 @@ import { leerDocumento, obtenerTodos, buscarPorIndice } from "../db.js";
 /**
  * SKILL: CalcularNumeroDeSemana
  *
- * Calcula el número de semana ISO (1-52) basado en la fecha
- * Usa ISO 8601: La semana 1 es la primera con jueves en enero
+ * Calcula el número de semana DEL PROGRAMA: la semana 1 empieza el lunes
+ * CONFIG.FECHA_INICIO_PROGRAMA y cada semana va de lunes a domingo.
+ * Antes de esa fecha devuelve 1. No tiene tope: la semana 53, 54... sigue contando
+ * y la variación cicla (ver mapearVariacionDeSemana).
  *
  * @param {Date} fecha - Fecha a calcular (default: hoy)
- * @returns {number} - Número de semana (1-52)
+ * @param {string} [inicio] - Lunes de la semana 1 "AAAA-MM-DD" (default: CONFIG.FECHA_INICIO_PROGRAMA)
+ * @returns {number} - Número de semana (>= 1)
  */
-export function calcularNumeroDeSemana(fecha = new Date()) {
-  // Crear una copia (en UTC) para no mutar la original
-  const d = new Date(
-    Date.UTC(fecha.getFullYear(), fecha.getMonth(), fecha.getDate())
-  );
+export function calcularNumeroDeSemana(fecha = new Date(), inicio = CONFIG.FECHA_INICIO_PROGRAMA) {
+  const [yi, mi, di] = inicio.split("-").map(Number);
 
-  // ISO 8601: el día de la semana va de 1 (lunes) a 7 (domingo)
-  const diaSemana = d.getUTCDay() || 7;
+  // Días calendario completos (en UTC, así el cambio de hora no afecta el conteo)
+  const diaFecha = Date.UTC(fecha.getFullYear(), fecha.getMonth(), fecha.getDate());
+  const diaInicio = Date.UTC(yi, mi - 1, di);
+  const dias = Math.floor((diaFecha - diaInicio) / 86400000);
 
-  // Mover la fecha al jueves de esa semana (el jueves define a qué año pertenece)
-  d.setUTCDate(d.getUTCDate() + 4 - diaSemana);
-
-  // Semana = cuántas semanas completas hay desde el 1 de enero de ese año
-  const inicioAnio = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-  const weekNum = Math.ceil(((d - inicioAnio) / 86400000 + 1) / 7);
-
-  return Math.max(1, Math.min(52, weekNum)); // Clamp entre 1-52 (semana 53 cuenta como 52)
+  return dias < 0 ? 1 : Math.floor(dias / 7) + 1;
 }
 
 /**
  * SKILL: MapearVariacionDeSemana
  *
- * Mapea un número de semana (1-52) a número de variación (1-5 en ciclo)
+ * Mapea un número de semana (>= 1) a número de variación (1-5 en ciclo)
  * Ejemplo con VARIATION_CYCLE_LENGTH=5:
  * - Semana 1 → Variación 1
- * - Semana 2 → Variación 2
  * - Semana 5 → Variación 5
  * - Semana 6 → Variación 1 (reinicia ciclo)
  *
- * @param {number} numeroSemana - 1-52
+ * @param {number} numeroSemana - entero >= 1
  * @returns {number} - Número de variación (1-5)
  */
 export function mapearVariacionDeSemana(numeroSemana) {
-  if (numeroSemana < 1 || numeroSemana > 52) {
+  if (!Number.isInteger(numeroSemana) || numeroSemana < 1) {
     throw new Error(`Número de semana inválido: ${numeroSemana}`);
   }
 
   const cycleLength = CONFIG.VARIATION_CYCLE_LENGTH;
   // Usar módulo para ciclar: semana 6 → variación 1
-  const variacionNumero = ((numeroSemana - 1) % cycleLength) + 1;
-
-  return variacionNumero;
+  return ((numeroSemana - 1) % cycleLength) + 1;
 }
 
 /**
@@ -188,8 +180,13 @@ export function compararVariaciones(variacionActual, variacionAnterior) {
 /**
  * SKILL: ObtenerProximoDia
  *
- * Calcula el próximo día de entrenamiento desde hoy
- * Orden: Martes, Miércoles, Viernes
+ * Calcula el día de entrenamiento que corresponde mostrar
+ * Rutina por día: Martes = Pierna, Miércoles = Pecho/Tríceps/Hombro, Viernes = Espalda/Bíceps
+ *
+ * - Si hoy es martes, miércoles o viernes → devuelve HOY (diasAlProximo = 0),
+ *   disponible las 24 horas del día.
+ * - Si hoy no es día de entrenamiento → devuelve el siguiente (lunes → martes,
+ *   jueves → viernes, sábado/domingo → martes).
  *
  * @param {Date} fecha - Fecha de referencia (default: hoy)
  * @returns {Object} - { diaId: string, diasAlProximo: number, fecha: Date }
@@ -205,7 +202,9 @@ export function obtenerProximoDia(fecha = new Date()) {
   let proximoDia = null;
   let diasAlProximo = 0;
 
-  for (let i = 1; i <= 7; i++) {
+  // Empieza en 0: si HOY es día de entrenamiento, la rutina de hoy es la que toca
+  // durante todo el día (0:00 a 23:59). Recién a las 0:00 del día siguiente cambia.
+  for (let i = 0; i <= 7; i++) {
     const proximaFecha = new Date(fecha);
     proximaFecha.setDate(proximaFecha.getDate() + i);
     const dioDiaProximo = proximaFecha.getDay();

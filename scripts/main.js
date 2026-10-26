@@ -108,6 +108,9 @@ async function inicializarApp() {
       console.log("✅ Sincronización automática iniciada");
     }
 
+    // La rutina de cada día dura de 0:00 a 23:59: si cambia el día con la app abierta, se refresca
+    vigilarCambioDeDia();
+
     APP.inicializado = true;
     console.log("🎯 APP LISTA");
     mostrarNotificacion("App cargada correctamente", "success");
@@ -116,6 +119,43 @@ async function inicializarApp() {
     console.error("❌ Error en inicialización:", error);
     mostrarNotificacion(`Error: ${error.message}`, "error");
   }
+}
+
+/**
+ * Fecha local en formato YYYY-MM-DD (cambia exactamente a las 0:00 de la hora local)
+ */
+function fechaLocalISO(fecha = new Date()) {
+  const mes = String(fecha.getMonth() + 1).padStart(2, "0");
+  const dia = String(fecha.getDate()).padStart(2, "0");
+  return `${fecha.getFullYear()}-${mes}-${dia}`;
+}
+
+/**
+ * Recarga la app cuando cambia el día (a las 0:00) para mostrar la rutina del nuevo día.
+ *
+ * - Con la app visible: un único temporizador programado para la próxima medianoche.
+ * - Con la app en segundo plano (iOS la congela y los temporizadores no corren): al volver
+ *   a abrirla (visibilitychange / focus / pageshow) se compara la fecha y se recarga si cambió.
+ * El avance del entrenamiento ya está guardado en IndexedDB serie a serie, así que recargar no pierde datos.
+ */
+function vigilarCambioDeDia() {
+  const diaCargado = fechaLocalISO();
+
+  const revisar = () => {
+    if (document.visibilityState === "visible" && fechaLocalISO() !== diaCargado) {
+      console.log("🌅 Cambió el día: recargando la rutina");
+      window.location.reload();
+    }
+  };
+
+  document.addEventListener("visibilitychange", revisar);
+  window.addEventListener("focus", revisar);
+  window.addEventListener("pageshow", revisar);
+
+  // Programar la revisión para la próxima medianoche local (+1 s de margen)
+  const ahora = new Date();
+  const proximaMedianoche = new Date(ahora.getFullYear(), ahora.getMonth(), ahora.getDate() + 1, 0, 0, 1);
+  setTimeout(revisar, proximaMedianoche - ahora);
 }
 
 /**
@@ -182,7 +222,11 @@ async function inicializarDatosLayer2() {
 
     console.log("📅 Información de hoy:");
     console.log(`   ¿Es hoy día de entrenamiento? ${esHoy ? `Sí (${esHoy})` : "No"}`);
-    console.log(`   Próximo entrenamiento: ${proximoDia.diaId} (en ${proximoDia.diasAlProximo} día/s)`);
+    console.log(
+      proximoDia.diasAlProximo === 0
+        ? `   Entrenamiento de hoy: ${proximoDia.diaId}`
+        : `   Próximo entrenamiento: ${proximoDia.diaId} (en ${proximoDia.diasAlProximo} día/s)`
+    );
 
     // Obtener variación para el próximo día
     const variacionProximo = await obtenerVariacionActual(proximoDia.diaId, proximoDia.fecha);

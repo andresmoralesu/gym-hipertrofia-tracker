@@ -9,6 +9,8 @@
  * - Próximo ejercicio
  */
 
+import { describirRutina } from "../rutinaDia.js";
+
 export class WorkoutScreen {
   constructor(db) {
     this.db = db;
@@ -112,10 +114,7 @@ export class WorkoutScreen {
         [variationData.diaId, variationData.numeroVariacion]
       );
 
-      return {
-        dia: variacion?.dia || "Hoy",
-        grupoMuscular: variacion?.grupoMuscular || "Desconocido"
-      };
+      return describirRutina(variationData.diaId, variacion);
     } catch (error) {
       return { dia: "Hoy", grupoMuscular: "Desconocido" };
     }
@@ -254,9 +253,9 @@ export class WorkoutScreen {
       // Avanzar a próxima serie o ejercicio
       if (estado.serieActual < estado.totalSeries) {
         estado.serieActual++;
-        // Actualizar el contador en pantalla y guardar el avance
-        this.actualizarContadorSerie(estado);
+        // Guardar el avance ANTES de mostrarlo: si se recarga justo después, no se pierde la serie
         await this.persistirEstado(estado);
+        this.actualizarContadorSerie(estado);
         // Reiniciar timer de descanso
         this.iniciarTimer(document.querySelector(".workout-screen"), estado.ejercicioActual.descanso);
       } else {
@@ -399,8 +398,8 @@ export class WorkoutScreen {
       if (estado.serieActual < estado.totalSeries) {
         estado.serieActual++;
         console.log(`⏭️ Serie saltada. Siguiente: ${estado.serieActual}`);
-        this.actualizarContadorSerie(estado);
         await this.persistirEstado(estado);
+        this.actualizarContadorSerie(estado);
         this.iniciarTimer(document.querySelector(".workout-screen"), estado.ejercicioActual.descanso);
       } else {
         this.mostrarModalEjercicioCompletado(estado);

@@ -8,6 +8,8 @@
  * - Botón "Comenzar Entrenamiento"
  */
 
+import { describirRutina } from "../rutinaDia.js";
+
 export class HomeScreen {
   constructor(db) {
     this.db = db;
@@ -99,8 +101,7 @@ export class HomeScreen {
 
       return {
         semana: variationData.numeroSemana || 1,
-        grupoMuscular: variacion?.grupoMuscular || "Desconocido",
-        dia: variacion?.dia || "Hoy"
+        ...describirRutina(variationData.diaId, variacion)
       };
     } catch (error) {
       console.warn("⚠️ No se pudo obtener variación:", error);

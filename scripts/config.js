@@ -24,6 +24,11 @@ export const CONFIG = {
   TRAINING_DURATION_MIN: 90, // Minutos
   VARIATION_CYCLE_LENGTH: 5, // Número de variaciones en el ciclo
 
+  // Inicio del programa: el LUNES de la semana 1 (formato AAAA-MM-DD, hora local).
+  // La semana N va de lunes a domingo, N = semanas completas desde esta fecha + 1,
+  // y la variación es ((N-1) % 5) + 1. Antes de esta fecha se muestra la semana 1.
+  FECHA_INICIO_PROGRAMA: "2026-10-26",
+
   // Stores de IndexedDB
   STORES: {
     VARIACIONES: "variaciones",

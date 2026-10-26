@@ -294,7 +294,7 @@ export class SettingsScreen {
 
       // 5. Guardar en IndexedDB con el formato que usa la app:
       //    store "variaciones", clave [diaId, numeroVariacion]
-      const semanaSiguiente = semanaActual >= 52 ? 1 : semanaActual + 1;
+      const semanaSiguiente = semanaActual + 1;
       const numeroVariacion = mapearVariacionDeSemana(semanaSiguiente);
 
       const ejercicios = ejerciciosGenerados

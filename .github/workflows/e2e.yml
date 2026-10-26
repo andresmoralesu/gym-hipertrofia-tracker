@@ -1,0 +1,40 @@
+name: E2E
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Instalar navegadores (Chromium + WebKit/Safari)
+        run: npx playwright install --with-deps chromium webkit
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Tests E2E (desktop + iPhone 14 emulado + Safari/WebKit)
+        run: npx playwright test
+        env:
+          WEBKIT: '1'
+
+      - name: Subir reporte HTML
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 14
