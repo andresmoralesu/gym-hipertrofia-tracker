@@ -55,17 +55,78 @@ test.describe('Settings: sincronización con Google Sheets', () => {
     await expect(app.settings.lastSync).not.toHaveText('Nunca');
   });
 
-  test('BUG-04: sincronizar dos veces no debería duplicar filas en la hoja', async ({ app, page, appsScript }) => {
-    test.fail(true, 'BUG-04: cada sincronización reenvía TODO el historial y la hoja acumula duplicados');
+  test('sincronizar dos veces no duplica filas en la hoja (la segunda no envía nada)', async ({ app, page, appsScript }) => {
+    await app.open();
+    await idb.put(page, 'historialPesos', TRES);
+    await app.goTo('settings');
+
+    await app.settings.syncButton.click();
+    await app.expectDialog(/Sincronizado.*3 registros guardados/s);
+    await app.settings.syncButton.click();
+    await app.expectDialog(/Sincronizado.*0 registros nuevos/s);
+
+    expect(appsScript.postCount).toBe(3);
+    expect(appsScript.sheet).toHaveLength(3);
+  });
+
+  test('solo se envían los registros nuevos desde la última sincronización', async ({ app, page, appsScript }) => {
+    await app.open();
+    await idb.put(page, 'historialPesos', TRES);
+    await app.goTo('settings');
+    await app.settings.syncButton.click();
+    await app.expectDialog(/Sincronizado.*3 registros guardados/s);
+
+    await idb.put(page, 'historialPesos', registro('d', 'Remo', 37.5, '2026-10-24T15:00:00.000Z'));
+    await app.settings.syncButton.click();
+    await app.expectDialog(/Sincronizado.*1 registros guardados/s);
+
+    expect(appsScript.postCount).toBe(4);
+    expect(appsScript.sheet).toHaveLength(4);
+    expect(appsScript.sheet[3]).toMatchObject({ ejercicio: 'Remo', peso: 37.5 });
+  });
+
+  test('los registros se marcan como sincronizados en IndexedDB', async ({ app, page }) => {
     await app.open();
     await idb.put(page, 'historialPesos', TRES);
     await app.goTo('settings');
 
     await app.settings.syncButton.click();
     await app.expectDialog(/Sincronizado/);
-    await app.settings.syncButton.click();
-    await expect.poll(() => appsScript.postCount).toBeGreaterThanOrEqual(6);
 
+    const guardados = await idb.getAll(page, 'historialPesos');
+    expect(guardados.every((r) => r.sincronizado === true)).toBe(true);
+  });
+
+  test('actualización: lo que ya envió la versión anterior (reenviaba todo) no se vuelve a enviar', async ({ app, page, appsScript }) => {
+    await app.open();
+    await idb.put(page, 'historialPesos', TRES);
+    // La versión anterior guardaba en localStorage lo último que envió
+    await page.evaluate((datos) => localStorage.setItem('lastSyncedData', JSON.stringify(datos)), TRES);
+    await app.goTo('settings');
+
+    await app.settings.syncButton.click();
+
+    await app.expectDialog(/Sincronizado.*0 registros nuevos/s);
+    expect(appsScript.postCount).toBe(0);
+  });
+
+  test('el dispositivo que restaura no reenvía a la hoja lo que acaba de importar', async ({ app, page, appsScript, nuevoDispositivo }) => {
+    await app.open();
+    await idb.put(page, 'historialPesos', TRES);
+    await app.goTo('settings');
+    await app.settings.syncButton.click();
+    await app.expectDialog(/Sincronizado/);
+
+    const b = await nuevoDispositivo();
+    await b.open();
+    await b.goTo('settings');
+    await b.settings.restoreButton.click();
+    await b.expectDialog(/Restaurado.*3 registros importados/s);
+    expect(await idb.getAll(b.page, 'historialPesos')).toHaveLength(3);
+
+    await b.settings.syncButton.click();
+    await b.expectDialog(/Sincronizado.*0 registros nuevos/s);
+    expect(appsScript.postCount).toBe(3); // solo los 3 que envió el dispositivo A
     expect(appsScript.sheet).toHaveLength(3);
   });
 });

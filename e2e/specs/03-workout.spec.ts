@@ -177,7 +177,7 @@ test.describe('Workout: sesión completa y persistencia del avance', () => {
   });
 });
 
-test.describe('Workout: pestaña de la barra inferior y encabezado (+ defectos conocidos)', () => {
+test.describe('Workout: pestaña de la barra inferior, modal y encabezado', () => {
   test('la pestaña Workout de la barra inferior muestra el entrenamiento sin pasar por "Comenzar"', async ({ app }) => {
     await app.open();
     const primero = variacion('viernes', 3).ejercicios[0];
@@ -200,15 +200,41 @@ test.describe('Workout: pestaña de la barra inferior y encabezado (+ defectos c
     await expect(app.workout.counter).toHaveText('2 / 3');
   });
 
-  test('BUG-03: "Volver a Home" del modal lleva a la pestaña Home', async ({ app }) => {
-    test.fail(true, 'BUG-03: el modal solo cambia location.hash y el router no lo escucha; se queda en Workout');
+  test('"Volver a Home" del modal cierra el modal y lleva a la pestaña Home', async ({ app }) => {
     await app.open();
     await app.startWorkout();
     await app.workout.completeExercise(3);
 
     await app.workout.modalHomeButton.click();
 
-    await expect(app.nav('home')).toHaveClass(/active/, { timeout: 1500 });
+    await expect(app.workout.modal).toBeHidden();
+    await expect(app.nav('home')).toHaveClass(/active/);
+    await expect(app.screen('home')).toHaveClass(/active/);
+    await expect(app.screen('workout')).not.toHaveClass(/active/);
+  });
+
+  test('"Volver a Home" se lee: texto con contraste suficiente sobre el fondo del modal', async ({ app, page }) => {
+    await app.open();
+    await app.startWorkout();
+    await app.workout.completeExercise(3);
+
+    const contraste = await page.evaluate(() => {
+      const btn = document.querySelector('#btn-home') as HTMLElement;
+      const estilo = getComputedStyle(btn);
+      const rgb = (c: string) => (c.match(/[\d.]+/g) || []).slice(0, 4).map(Number);
+      const luminancia = ([r, g, b]: number[]) => {
+        const f = (v: number) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; };
+        return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
+      };
+      const texto = rgb(estilo.color);
+      // Fondo efectivo: el del botón si es opaco; si es transparente, el del modal (blanco)
+      const fondoBtn = rgb(estilo.backgroundColor);
+      const fondo = fondoBtn.length === 4 && fondoBtn[3] < 1 ? rgb(getComputedStyle(btn.closest('.modal-content')!).backgroundColor) : fondoBtn;
+      const [l1, l2] = [luminancia(texto), luminancia(fondo)].sort((x, y) => y - x);
+      return (l1 + 0.05) / (l2 + 0.05);
+    });
+
+    expect(contraste).toBeGreaterThanOrEqual(4.5); // WCAG AA para texto normal
   });
 
   test('el encabezado muestra día y grupo muscular reales', async ({ app, page }) => {

@@ -336,7 +336,10 @@ export class WorkoutScreen {
 
     modal.querySelector("#btn-home").addEventListener("click", () => {
       modal.remove();
-      window.location.hash = "#home";
+      // El router no escucha location.hash: se navega con el mismo evento que usa "Comenzar Entrenamiento"
+      window.dispatchEvent(new CustomEvent("navigate-to-tab", {
+        detail: { tab: "home" }
+      }));
     });
   }
 

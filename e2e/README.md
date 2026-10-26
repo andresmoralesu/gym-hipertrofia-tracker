@@ -58,8 +58,8 @@ Los tests `BUG-xx` usan `test.fail()`: pasan mientras el defecto exista y **empi
 |---|---|---|
 | ~~BUG-01~~ (corregido) | Home muestra "Desconocido • Hoy" y Workout "Hoy • Desconocido": `variaciones.json` no tiene `grupoMuscular` ni `dia` (solo `nombre`: "Espalda/Bíceps - Variación 3") | 02, 03 |
 | ~~BUG-02~~ (corregido) | La pestaña **Workout** de la barra inferior queda vacía; solo "Comenzar Entrenamiento" la construye | 03 |
-| BUG-03 | "Volver a Home" del modal cambia `location.hash` pero el router no lo escucha: se queda en Workout | 03 |
-| BUG-04 | Cada "Sincronizar Ahora" reenvía TODO el historial y la hoja acumula filas duplicadas (la restauración ya las deduplica) | 05 |
+| ~~BUG-03~~ (corregido) | "Volver a Home" del modal cambia `location.hash` pero el router no lo escucha: se queda en Workout | 03 |
+| ~~BUG-04~~ (corregido) | Cada "Sincronizar Ahora" reenvía TODO el historial y la hoja acumula filas duplicadas (la restauración ya las deduplica) | 05 |
 
 Observaciones (no son fallos, decide tú):
 - **NOTE-05 (resuelta)** — Cada rutina dura las 24 h de su día: martes = Pierna, miércoles = Pecho/Tríceps/Hombro, viernes = Espalda/Bíceps; en día de descanso se ofrece la siguiente. Cambia a las 0:00 (también con la app abierta o al volver de segundo plano). Specs 02, 08 y 09.

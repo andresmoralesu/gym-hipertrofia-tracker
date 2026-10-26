@@ -687,3 +687,15 @@ input[type="number"]::placeholder,
     font-size: 40px;
   }
 }
+/* ===== Modal (fondo blanco): el botón secundario debe leerse =====
+   El estilo base de .btn-secondary es para el tema oscuro (texto casi blanco) y sobre el
+   fondo blanco del modal "Ejercicio Completado" el botón "Volver a Home" no se veía. */
+.modal-buttons .btn-secondary {
+  background: #ffffff;
+  color: var(--secondary);
+  border: 1.5px solid rgba(20, 19, 15, 0.3);
+}
+
+.modal-buttons .btn-secondary:hover {
+  background: rgba(20, 19, 15, 0.06);
+}

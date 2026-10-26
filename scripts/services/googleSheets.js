@@ -77,81 +77,108 @@ export class GoogleSheetsService {
   }
 
   /**
-   * Sincronizar datos a Google Sheets vía POST
+   * Clave que identifica un registro (cada serie tiene su propia marca de tiempo):
+   * fecha (al segundo) + ejercicio + peso. Es la misma que usa la restauración.
+   */
+  claveDe(r) {
+    return [String(r.fecha).slice(0, 19), r.ejercicio, Number(r.peso)].join('|');
+  }
+
+  /**
+   * Sincronizar a Google Sheets vía POST SOLO los registros que aún no se han enviado.
+   *
+   * Cada registro se marca con `sincronizado: true` en IndexedDB cuando su envío termina,
+   * así sincronizar varias veces no duplica filas en la hoja. Los registros que ya se
+   * enviaron con versiones anteriores de la app (que reenviaban todo) se reconocen por
+   * 'lastSyncedData' y se marcan sin volver a enviarlos. Si el envío se interrumpe, lo ya
+   * marcado no se repite en el siguiente intento.
    */
   async syncToSheet(dbAdapter) {
-  try {
-    console.log('🔄 Iniciando sincronización con Google Sheets...');
+    try {
+      console.log('🔄 Iniciando sincronización con Google Sheets...');
 
-    const historialPesos = await dbAdapter.obtenerTodos('historialPesos');
+      const historialPesos = await dbAdapter.obtenerTodos('historialPesos');
 
-    if (historialPesos.length === 0) {
-      console.log('ℹ️ No hay datos para sincronizar');
-      return { recordsSynced: 0, timestamp: new Date().toISOString() };
-    }
+      // Registros enviados por versiones anteriores (reenviaban todo el historial cada vez)
+      let yaEnviadosAntes = new Set();
+      try {
+        const previos = JSON.parse(localStorage.getItem('lastSyncedData') || '[]');
+        yaEnviadosAntes = new Set(previos.map((r) => this.claveDe(r)));
+      } catch { /* sin datos previos */ }
 
-    // Ordenar por fecha para mantener el orden cronológico
-    const historialOrdenado = historialPesos.sort((a, b) =>
-      new Date(a.fecha) - new Date(b.fecha)
-    );
+      // Migración: lo que ya estaba en la hoja se marca como sincronizado sin reenviarlo
+      for (const record of historialPesos) {
+        if (!record.sincronizado && yaEnviadosAntes.has(this.claveDe(record))) {
+          record.sincronizado = true;
+          await dbAdapter.escribirDocumento('historialPesos', record);
+        }
+      }
 
-    const datosAEnviar = historialOrdenado.map(record => ({
-      fecha: record.fecha || new Date().toISOString().split('T')[0],
-      ejercicio: record.ejercicio || 'Sin nombre',
-      peso: record.peso || 0,
-      series: record.series || 0,
-      reps: record.reps || 0,
-      notas: record.notas || ''
-    }));
+      // Pendientes, en orden cronológico
+      const pendientes = historialPesos
+        .filter((r) => !r.sincronizado)
+        .sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
 
-    // ⭐ NUEVO LOG
-    console.log('🔍 datosAEnviar:', JSON.stringify(datosAEnviar, null, 2));
-    console.log('📊 Primer registro:', datosAEnviar[0]);
-    // ⭐ FIN NUEVO LOG
+      if (pendientes.length === 0) {
+        console.log('ℹ️ No hay registros nuevos para sincronizar');
+        this.syncState.lastSync = new Date().toISOString();
+        this.syncState.lastSyncedRecords = 0;
+        this.syncState.syncErrors = [];
+        this.saveSyncState();
+        return { recordsSynced: 0, timestamp: this.syncState.lastSync, data: [] };
+      }
 
-    console.log(`📤 Enviando ${datosAEnviar.length} registros a Google Sheets...`);
+      console.log(`📤 Enviando ${pendientes.length} registros nuevos a Google Sheets...`);
 
-    // Enviar cada registro por separado
-    for (const record of datosAEnviar) {
-      const formData = new FormData();
-      formData.append('fecha', record.fecha);
-      formData.append('ejercicio', record.ejercicio);
-      formData.append('peso', record.peso);
-      formData.append('series', record.series);
-      formData.append('reps', record.reps);
-      formData.append('notas', record.notas);
+      const enviados = [];
+      for (const record of pendientes) {
+        const datos = {
+          fecha: record.fecha || new Date().toISOString().split('T')[0],
+          ejercicio: record.ejercicio || 'Sin nombre',
+          peso: record.peso || 0,
+          series: record.series || 0,
+          reps: record.reps || 0,
+          notas: record.notas || ''
+        };
 
-      await fetch(this.scriptUrl, {
-        method: 'POST',
-        body: formData,
-        mode: 'no-cors'
+        const formData = new FormData();
+        Object.entries(datos).forEach(([k, v]) => formData.append(k, v));
+
+        await fetch(this.scriptUrl, {
+          method: 'POST',
+          body: formData,
+          mode: 'no-cors'
+        });
+
+        // Marcar como enviado apenas termina, para no repetirlo si algo falla más adelante
+        record.sincronizado = true;
+        await dbAdapter.escribirDocumento('historialPesos', record);
+        enviados.push(datos);
+      }
+
+      this.syncState.lastSync = new Date().toISOString();
+      this.syncState.lastSyncedRecords = enviados.length;
+      this.syncState.syncErrors = [];
+      this.saveSyncState();
+
+      console.log(`✅ Sincronización completada: ${enviados.length} registros`);
+
+      return {
+        recordsSynced: enviados.length,
+        timestamp: this.syncState.lastSync,
+        data: enviados
+      };
+
+    } catch (error) {
+      console.error('❌ Error en sincronización:', error);
+      this.syncState.syncErrors.push({
+        timestamp: new Date().toISOString(),
+        error: error.message
       });
+      this.saveSyncState();
+      throw error;
     }
-
-    localStorage.setItem('lastSyncedData', JSON.stringify(datosAEnviar));
-    this.syncState.lastSync = new Date().toISOString();
-    this.syncState.lastSyncedRecords = datosAEnviar.length;
-    this.syncState.syncErrors = [];
-    this.saveSyncState();
-
-    console.log(`✅ Sincronización completada: ${datosAEnviar.length} registros`);
-
-    return {
-      recordsSynced: datosAEnviar.length,
-      timestamp: this.syncState.lastSync,
-      data: datosAEnviar
-    };
-
-  } catch (error) {
-    console.error('❌ Error en sincronización:', error);
-    this.syncState.syncErrors.push({
-      timestamp: new Date().toISOString(),
-      error: error.message
-    });
-    this.saveSyncState();
-    throw error;
   }
-}
 
   /**
    * Leer el historial guardado en la hoja de Google Sheets (vía Apps Script, JSONP)
@@ -228,7 +255,8 @@ export class GoogleSheetsService {
 
         await dbAdapter.escribirDocumento('historialPesos', {
           ...record,
-          id: `restore-${clave}`   // determinista: restaurar dos veces no duplica
+          id: `restore-${clave}`,  // determinista: restaurar dos veces no duplica
+          sincronizado: true       // ya está en la hoja: no se vuelve a enviar
         });
         importados++;
       }

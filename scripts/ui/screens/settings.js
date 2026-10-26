@@ -199,7 +199,9 @@ export class SettingsScreen {
       const result = await sheetsService.syncToSheet(dbAdapter);
 
       // Mostrar éxito
-      alert(`✅ Sincronizado!\n${result.recordsSynced} registros guardados`);
+      alert(result.recordsSynced === 0
+        ? "✅ Sincronizado!\n0 registros nuevos (todo estaba al día)"
+        : `✅ Sincronizado!\n${result.recordsSynced} registros guardados`);
 
       // Actualizar config en BD (CORREGIDO: key como parámetro separado)
       await this.db.escribirDocumento("config", {
