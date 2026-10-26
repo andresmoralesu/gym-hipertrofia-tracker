@@ -58,9 +58,22 @@ jobs:
 
       - run: npm ci
 
+      # El mirror de paquetes de Ubuntu a veces se queda colgado a mitad de la descarga.
+      # apt reintenta y corta las descargas detenidas; además el paso se repite hasta 3 veces.
       - name: Instalar WebKit
-        timeout-minutes: 6
-        run: npx playwright install --with-deps webkit
+        timeout-minutes: 12
+        run: |
+          printf 'Acquire::Retries "5";\nAcquire::http::Timeout "30";\nAcquire::https::Timeout "30";\n' | sudo tee /etc/apt/apt.conf.d/80-reintentos
+          for intento in 1 2 3; do
+            echo "Instalando WebKit, intento $intento de 3"
+            if timeout -k 10 200 npx playwright install --with-deps webkit; then
+              exit 0
+            fi
+            echo "Falló o se colgó; limpiando apt y reintentando..."
+            sudo pkill -f apt-get || true
+            sudo dpkg --configure -a || true
+          done
+          exit 1
 
       - name: Tests E2E (Safari / WebKit)
         timeout-minutes: 8
