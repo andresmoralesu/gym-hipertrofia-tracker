@@ -68,6 +68,7 @@ test.describe('Layout móvil', () => {
   test('Settings: "Borrar Historial" (último botón) se alcanza y se puede tocar', async ({ app, page }) => {
     app.confirmAnswer = false; // solo comprobamos que el tap llega; no borrar nada
     await app.goTo('settings');
+    await expect(app.settings.clearButton).toBeVisible(); // Settings se dibuja de forma asíncrona: esperar antes de hacer scroll
     await irAlFinal(page);
     const caja = await app.settings.clearButton.boundingBox();
     const { navTop } = await cajas(page);

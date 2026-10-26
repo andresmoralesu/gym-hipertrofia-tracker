@@ -12,7 +12,10 @@ import { AHORA_POR_DEFECTO } from '../support/data';
 const RUIDO_CONOCIDO = [
   /Unexpected token 'export'/,
   /Cannot use import statement outside a module/,
-  /Failed to load resource/, // la consola lo emite por cada request bloqueada/stub
+  /Failed to load resource/, // la consola lo emite por cada request bloqueada/stub (Chromium)
+  // Safari/WebKit (JavaScriptCore) redacta distinto los mismos dos problemas:
+  /import call expects/,      // `import ... from` en un <script> clásico
+  /Load failed/,              // request bloqueada/stub (las externas se verifican aparte en requestsExternas)
 ];
 
 export interface ErroresPagina {

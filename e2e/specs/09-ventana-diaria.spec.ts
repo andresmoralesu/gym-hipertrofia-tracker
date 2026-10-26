@@ -2,24 +2,28 @@ import { test, expect } from '../fixtures/test';
 import { variacion } from '../support/data';
 
 /**
- * La rutina de cada día de entrenamiento dura de 0:00:00 a 23:59:59 (hora de Bogotá).
+ * La rutina de cada día de entrenamiento dura de 0:00:00 a 23:59:30 (hora de Bogotá).
  * Martes = Pierna, miércoles = Pecho/Tríceps/Hombro, viernes = Espalda/Bíceps.
  * Semana 3 del programa = lun 9 → dom 15 nov 2026 (variación 3); desde el lunes 16 es la semana 4 (variación 4).
  */
 const hora = (iso: string) => new Date(`${iso}-05:00`);
 
+// Nota: el reloj de la página corre en tiempo real. Los casos de "fin del día" parten de 23:59:30 (y no de
+// 23:59:59) para que una máquina lenta no cruce la medianoche en mitad del test. El último segundo exacto
+// se prueba como lógica pura en 08-iso-week.spec.ts.
+
 const BORDES = [
   { nombre: 'martes 00:00:00',    cuando: '2026-11-10T00:00:00', dia: 'martes',    semana: 3, v: 3 },
-  { nombre: 'martes 23:59:59',    cuando: '2026-11-10T23:59:59', dia: 'martes',    semana: 3, v: 3 },
+  { nombre: 'martes 23:59:30',    cuando: '2026-11-10T23:59:30', dia: 'martes',    semana: 3, v: 3 },
   { nombre: 'miércoles 00:00:00', cuando: '2026-11-11T00:00:00', dia: 'miercoles', semana: 3, v: 3 },
-  { nombre: 'miércoles 23:59:59', cuando: '2026-11-11T23:59:59', dia: 'miercoles', semana: 3, v: 3 },
+  { nombre: 'miércoles 23:59:30', cuando: '2026-11-11T23:59:30', dia: 'miercoles', semana: 3, v: 3 },
   { nombre: 'jueves 00:00:00',    cuando: '2026-11-12T00:00:00', dia: 'viernes',   semana: 3, v: 3 },
   { nombre: 'viernes 00:00:00',   cuando: '2026-11-13T00:00:00', dia: 'viernes',   semana: 3, v: 3 },
-  { nombre: 'viernes 23:59:59',   cuando: '2026-11-13T23:59:59', dia: 'viernes',   semana: 3, v: 3 },
+  { nombre: 'viernes 23:59:30',   cuando: '2026-11-13T23:59:30', dia: 'viernes',   semana: 3, v: 3 },
   { nombre: 'sábado 00:00:00',    cuando: '2026-11-14T00:00:00', dia: 'martes',    semana: 4, v: 4 },
-  { nombre: 'domingo 23:59:59',   cuando: '2026-11-15T23:59:59', dia: 'martes',    semana: 4, v: 4 },
+  { nombre: 'domingo 23:59:30',   cuando: '2026-11-15T23:59:30', dia: 'martes',    semana: 4, v: 4 },
   { nombre: 'lunes 00:00:00',     cuando: '2026-11-16T00:00:00', dia: 'martes',    semana: 4, v: 4 },
-  { nombre: 'lunes 23:59:59',     cuando: '2026-11-16T23:59:59', dia: 'martes',    semana: 4, v: 4 },
+  { nombre: 'lunes 23:59:30',     cuando: '2026-11-16T23:59:30', dia: 'martes',    semana: 4, v: 4 },
 ] as const;
 
 test.describe('Ventana de 24 horas por rutina: bordes de medianoche', () => {

@@ -86,6 +86,21 @@ test.describe('Semanas del programa y ciclo de variaciones', () => {
     expect(obtenido).toEqual(esperado);
   });
 
+  test('obtenerProximoDia: el último segundo del día sigue siendo HOY y a las 0:00 pasa al siguiente', async ({ page }) => {
+    const r = await page.evaluate(async (MODULO) => {
+      const { obtenerProximoDia } = await import(MODULO);
+      const f = (d: Date) => { const x = obtenerProximoDia(d); return [x.diaId, x.diasAlProximo]; };
+      return [
+        f(new Date(2026, 10, 13, 0, 0, 0)),    // viernes 0:00:00
+        f(new Date(2026, 10, 13, 23, 59, 59)), // viernes 23:59:59
+        f(new Date(2026, 10, 14, 0, 0, 0)),    // sábado 0:00:00 → martes
+        f(new Date(2026, 10, 10, 23, 59, 59)), // martes 23:59:59
+        f(new Date(2026, 10, 11, 0, 0, 0)),    // miércoles 0:00:00
+      ];
+    }, MODULO);
+    expect(r).toEqual([['viernes', 0], ['viernes', 0], ['martes', 3], ['martes', 0], ['miercoles', 0]]);
+  });
+
   test('esHoyEntrenamiento detecta solo martes, miércoles y viernes', async ({ page }) => {
     const obtenido = await page.evaluate(async (MODULO) => {
       const { esHoyEntrenamiento } = await import(MODULO);
