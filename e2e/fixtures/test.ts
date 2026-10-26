@@ -14,6 +14,7 @@ const RUIDO_CONOCIDO = [
   /Cannot use import statement outside a module/,
   /Failed to load resource/, // la consola lo emite por cada request bloqueada/stub (Chromium)
   // Safari/WebKit (JavaScriptCore) redacta distinto los mismos dos problemas:
+  /Unexpected keyword 'export'/, // `export` en un <script> clásico (Chromium: "Unexpected token 'export'")
   /import call expects/,      // `import ... from` en un <script> clásico
   /Load failed/,              // request bloqueada/stub (las externas se verifican aparte en requestsExternas)
 ];
