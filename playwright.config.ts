@@ -13,9 +13,12 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
   workers: process.env.CI ? 2 : undefined,
+  // En CI también se imprime el progreso ('list'): si algo se cuelga, el log muestra dónde.
   reporter: process.env.CI
-    ? [['github'], ['html', { open: 'never' }]]
+    ? [['github'], ['list'], ['html', { open: 'never' }]]
     : [['list'], ['html', { open: 'never' }]],
+  // En CI, Playwright corta por su cuenta antes que el límite del job y deja el reporte generado.
+  globalTimeout: process.env.CI ? 9 * 60_000 : 0,
   timeout: 30_000,
   expect: { timeout: 7_000 },
 

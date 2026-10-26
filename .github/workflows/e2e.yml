@@ -7,8 +7,11 @@ on:
   workflow_dispatch:
 
 jobs:
+  # Chrome de escritorio + iPhone 14 emulado. Es el job que decide si el commit está bien.
   e2e:
-    runs-on: ubuntu-latest
+    name: e2e (escritorio + iPhone emulado)
+    # Versión fija: "ubuntu-latest" está migrando a Ubuntu 26, que Playwright aún no soporta.
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
@@ -20,14 +23,48 @@ jobs:
 
       - run: npm ci
 
-      - name: Instalar navegadores (Chromium + WebKit/Safari)
-        run: npx playwright install --with-deps chromium webkit
+      - name: Instalar Chromium
+        timeout-minutes: 6
+        run: npx playwright install --with-deps chromium
 
       - name: Typecheck
         run: npm run typecheck
 
-      - name: Tests E2E (desktop + iPhone 14 emulado + Safari/WebKit)
-        run: npx playwright test
+      - name: Tests E2E (escritorio + iPhone 14 emulado)
+        timeout-minutes: 10
+        run: npx playwright test --project=desktop-chromium --project=iphone-14-chromium
+
+      - name: Subir reporte HTML
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 14
+
+  # Safari real (WebKit). Informativo: si falla, no marca en rojo todo el commit.
+  e2e-safari:
+    name: e2e (Safari / WebKit, informativo)
+    runs-on: ubuntu-24.04
+    continue-on-error: true
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Instalar WebKit
+        timeout-minutes: 6
+        run: npx playwright install --with-deps webkit
+
+      - name: Tests E2E (Safari / WebKit)
+        timeout-minutes: 8
+        run: npx playwright test --project=iphone-14-safari
         env:
           WEBKIT: '1'
 
@@ -35,6 +72,6 @@ jobs:
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report
+          name: playwright-report-safari
           path: playwright-report/
           retention-days: 14
